@@ -1,0 +1,55 @@
+---
+export interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  isHighlighted?: boolean;
+  hasBorderBottom?: boolean;
+}
+
+const { icon, title, description, isHighlighted = false, hasBorderBottom = false } = Astro.props;
+
+// Construire les classes de bordure
+const borderClasses = hasBorderBottom 
+  ? "border-l border-r border-t border-b border-white/3" 
+  : "border-l border-r border-t border-white/3";
+---
+
+{isHighlighted ? (
+  <!-- Card avec design spécial (état hover permanent) -->
+  <div class={`relative group ${borderClasses} p-5 md:p-6 flex flex-col gap-4 min-h-[180px] bg-gradient-to-r from-gradient-dark to-transparent overflow-hidden`}>
+    <!-- Pattern background -->
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[250px] bg-light-blue/20 rounded-full"></div>
+    </div>
+    
+    <!-- Icône avec effet spécial -->
+    <div class="relative">
+      <!-- Effet de lueur derrière l'icône -->
+      <div class="absolute inset-0 bg-light-blue opacity-40 blur-[10px] rounded-md transform scale-110"></div>
+      <div class="relative flex items-center justify-center w-8 h-8 bg-secondary-blue rounded-md">
+        <img src={icon} alt="" width="16" height="16" class="w-4 h-4" />
+      </div>
+    </div>
+    
+    <div class="relative flex-1">
+      <h3 class="text-white font-medium text-lg leading-tight mb-2">{title}</h3>
+      <p class="text-white/50 font-medium text-sm leading-relaxed tracking-tight">
+        {description}
+      </p>
+    </div>
+  </div>
+) : (
+  <!-- Card normale avec effet hover -->
+  <div class={`group ${borderClasses} p-5 md:p-6 flex flex-col gap-4 min-h-[180px] hover:bg-gradient-to-r hover:from-gradient-dark hover:to-transparent transition-all duration-300`}>
+    <div class="flex items-center justify-center w-8 h-8 bg-secondary-blue rounded-md">
+      <img src={icon} alt="" width="16" height="16" class="w-4 h-4" />
+    </div>
+    <div class="flex-1">
+      <h3 class="text-white font-medium text-lg leading-tight mb-2">{title}</h3>
+      <p class="text-white/50 font-medium text-sm leading-relaxed tracking-tight">
+        {description}
+      </p>
+    </div>
+  </div>
+)}

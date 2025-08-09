@@ -1,0 +1,113 @@
+---
+import SectionBadge from './ui/SectionBadge.astro';
+import FeatureCard from './ui/FeatureCard.astro';
+import backgroundLettersDesktop from '../assets/background-letters-desk.svg';
+
+// Placeholder pour les icônes - vous pourrez les remplacer par vos vraies icônes
+const chartIcon = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3e%3cpath d='M3 3v18h18'/%3e%3cpath d='m19 9-5 5-4-4-3 3'/%3e%3c/svg%3e";
+const filterIcon = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3e%3cpolygon points='22,3 2,3 10,12.46 10,19 14,21 14,12.46'/%3e%3c/svg%3e";
+const insightIcon = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3e%3cpath d='M9 11H1l8-8 8 8'/%3e%3cpath d='M9 21c6-1 12-7 12-13'/%3e%3c/svg%3e";
+const organizeIcon = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3e%3crect width='7' height='9' x='3' y='3' rx='1'/%3e%3crect width='7' height='5' x='14' y='3' rx='1'/%3e%3crect width='7' height='9' x='14' y='12' rx='1'/%3e%3crect width='7' height='5' x='3' y='16' rx='1'/%3e%3c/svg%3e";
+const portfolioIcon = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3e%3cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3e%3cpolyline points='14,2 14,8 20,8'/%3e%3cline x1='16' y1='13' x2='8' y2='13'/%3e%3cline x1='16' y1='17' x2='8' y2='17'/%3e%3cpolyline points='10,9 9,9 8,9'/%3e%3c/svg%3e";
+const routingIcon = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3e%3cpolyline points='9,11 12,14 20,6'/%3e%3cpath d='m21 3-6 6-4-4-6 6'/%3e%3cpath d='m21 3-6 6-4-4-6 6'/%3e%3c/svg%3e";
+
+// Placeholder pour la thumbnail de la vidéo
+const videoThumbnail = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='290' height='181' viewBox='0 0 290 181' fill='%23f3f4f6'%3e%3crect width='290' height='181' fill='%23374151'/%3e%3ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Inter' font-size='14'%3eTrading Interface Preview%3c/text%3e%3c/svg%3e";
+---
+
+<section class="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-primary-dark overflow-hidden">
+  <!-- Background effects -->
+  <div class="absolute inset-0">
+    <!-- Pattern background -->
+    <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[2151px] h-[1429px]">
+      <img 
+        src={backgroundLettersDesktop.src} 
+        alt="" 
+        class="w-full h-full object-cover"
+      />
+    </div>
+    
+    <!-- Effets de lueur -->
+    <div class="absolute -left-[386px] -top-[932px] w-[2692px] h-[1644px] bg-primary-blue opacity-5 blur-[200px]"></div>
+    <div class="absolute left-1/2 -top-[256px] transform -translate-x-1/2 w-[944px] h-[944px] bg-secondary-blue opacity-10 blur-[150px]"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto">
+    <!-- Header Section -->
+    <div class="flex flex-col items-center text-center mb-12 md:mb-20">
+      <!-- Section Badge -->
+      <SectionBadge text="Features" />
+      
+      <!-- Titre principal -->
+      <h2 class="text-white font-bold text-2xl md:text-4xl lg:text-5xl leading-tight mb-4 max-w-2xl mx-auto">
+        Everything you need.<br/>
+        Nothing you don't.
+      </h2>
+      
+      <!-- Sous-titre -->
+      <p class="text-light-blue font-medium text-base md:text-lg leading-relaxed max-w-md mx-auto tracking-tight">
+        Fast execution, clear data, and powerful tools — without the noise.
+      </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="max-w-md mx-auto md:max-w-2xl lg:max-w-4xl">
+      <!-- Ligne de séparation -->
+      <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-5"></div>
+      
+      <div class="flex flex-col gap-5">
+        <!-- Feature 1 - Expanded -->
+        <FeatureCard 
+          icon={chartIcon}
+          title="Live charts, always on"
+          description="See your trades evolve in real time. No refreshes. No lag. Just raw market data, updating live."
+          videoThumbnail={videoThumbnail}
+          isExpanded={true}
+        />
+        
+        <!-- Feature 2 -->
+        <FeatureCard 
+          icon={filterIcon}
+          title="Scan & filter trending tokens"
+          description="Filter through the noise and find the tokens that matter. Customize your filters and save them for later."
+          videoThumbnail={videoThumbnail}
+        />
+        
+        <!-- Feature 3 -->
+        <FeatureCard 
+          icon={insightIcon}
+          title="Accurate market insights"
+          description="Gain an edge with our real-time market insights. Understand the sentiment and make informed decisions."
+          videoThumbnail={videoThumbnail}
+        />
+        
+        <!-- Feature 4 -->
+        <FeatureCard 
+          icon={organizeIcon}
+          title="Organize your tokens"
+          description="Group your tokens into portfolios, create watchlists, and keep track of your assets with ease."
+          videoThumbnail={videoThumbnail}
+        />
+        
+        <!-- Feature 5 -->
+        <FeatureCard 
+          icon={portfolioIcon}
+          title="A complete portfolio page"
+          description="A detailed overview of your assets, performance, and history. All in one place."
+          videoThumbnail={videoThumbnail}
+        />
+        
+        <!-- Feature 6 -->
+        <FeatureCard 
+          icon={routingIcon}
+          title="Ultra-fast smart order routing"
+          description="Our smart order routing finds the best price across multiple exchanges, ensuring you get the best deal."
+          videoThumbnail={videoThumbnail}
+        />
+      </div>
+      
+      <!-- Ligne de séparation finale -->
+      <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mt-5"></div>
+    </div>
+  </div>
+</section>

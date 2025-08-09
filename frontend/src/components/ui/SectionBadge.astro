@@ -1,0 +1,38 @@
+---
+import backgroundLetters from '../../assets/background-letters.svg';
+
+export interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<!-- Section Badge Component -->
+<div class="relative mb-5 inline-block">
+  <!-- Badge principal -->
+  <div class="relative bg-gradient-dark px-4 py-2 rounded-lg overflow-hidden">
+    <!-- Effet ellipse avec blur qui éclaire du bas -->
+    <div class="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 w-[146px] h-[50px] bg-secondary-blue opacity-40 blur-[10px] rounded-full"></div>
+    
+    <!-- Gradient d'éclairage du bas vers le haut -->
+    <div class="absolute inset-0 bg-gradient-to-t from-white/10 via-white/5 to-transparent rounded-lg"></div>
+    
+    <!-- Pattern background -->
+    <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[763px] h-[507px] opacity-100">
+      <img 
+        src={backgroundLetters.src} 
+        alt="" 
+        class="w-full h-full object-contain"
+      />
+    </div>
+    
+    <!-- Inset shadow pour la lueur bleue -->
+    <div class="absolute inset-0 rounded-lg shadow-[inset_0_0_10px_rgba(119,149,250,0.5)]"></div>
+    
+    <!-- Texte -->
+    <span class="relative z-10 text-white text-xs font-medium tracking-[-0.24px] whitespace-nowrap">
+      {text}
+    </span>
+  </div>
+</div>

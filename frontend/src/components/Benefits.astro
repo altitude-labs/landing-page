@@ -1,0 +1,63 @@
+---
+import heartzIcon from '../assets/Heartz.svg';
+import SectionBadge from './ui/SectionBadge.astro';
+import BenefitsCard from './ui/BenefitsCard.astro';
+---
+
+<section class="relative py-20 pt-2 md:py-32 px-4 sm:px-6 lg:px-8 bg-primary-dark">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header Section -->
+    <div class="flex flex-col items-center text-center mb-12 md:mb-20">
+      <!-- Section Badge -->
+      <SectionBadge text="Section name" />
+      
+      <!-- Sous-titre -->
+      <p class="text-light-blue font-medium text-base md:text-lg lg:text-xl leading-relaxed mb-4 max-w-md mx-auto tracking-tight">
+        A trading infrastructure designed by real traders.
+      </p>
+      
+      <!-- Titre principal -->
+      <h2 class="text-white font-bold text-2xl md:text-4xl lg:text-5xl leading-tight max-w-md mx-auto">
+        Why trade anywhere else?
+      </h2>
+    </div>
+    
+    <!-- Custom Claiming Address Cards -->
+    <div class="max-w-md mx-auto md:max-w-2xl lg:max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
+        <BenefitsCard 
+          icon={heartzIcon.src}
+          title="Custom claiming address"
+          description="Choose your claiming wallet — and update it anytime. Onchain, of course."
+        />
+        <BenefitsCard 
+          icon={heartzIcon.src}
+          title="Custom claiming address"
+          description="Choose your claiming wallet — and update it anytime. Onchain, of course."
+        />
+        <BenefitsCard 
+          icon={heartzIcon.src}
+          title="Custom claiming address"
+          description="Choose your claiming wallet — and update it anytime. Onchain, of course."
+        />
+        <BenefitsCard 
+          icon={heartzIcon.src}
+          title="Custom claiming address"
+          description="Choose your claiming wallet — and update it anytime. Onchain, of course."
+          isHighlighted={true}
+        />
+        <BenefitsCard 
+          icon={heartzIcon.src}
+          title="Custom claiming address"
+          description="Choose your claiming wallet — and update it anytime. Onchain, of course."
+        />
+        <BenefitsCard 
+          icon={heartzIcon.src}
+          title="Custom claiming address"
+          description="Choose your claiming wallet — and update it anytime. Onchain, of course."
+          hasBorderBottom={true}
+        />
+      </div>
+    </div>
+  </div>
+</section>

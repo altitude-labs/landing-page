@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+/* Couleurs principales réutilisables */
+:root {
+  --primary-dark: #050F2F;
+  --primary-blue: #7795FA;
+  --secondary-blue: #2944A3;
+  --light-blue: #CFDAFF;
+  --accent-blue: #95AEFF;
+  --card-dark: #0C1B4E;
+  --gradient-dark: #0D1C50;
+}
+
+/* Classes utilitaires pour les couleurs */
+.bg-primary-dark { background-color: var(--primary-dark); }
+.bg-primary-blue { background-color: var(--primary-blue); }
+.bg-secondary-blue { background-color: var(--secondary-blue); }
+.bg-card-dark { background-color: var(--card-dark); }
+.bg-gradient-dark { background: var(--gradient-dark); }
+.text-light-blue { color: var(--light-blue); }
+.text-primary-blue { color: var(--primary-blue); }
+.border-primary-blue { border-color: var(--primary-blue); }
+
+/* Classes de police personnalisées */
+.font-inter { font-family: 'Inter', sans-serif; }
+
+/* Classes utilitaires pour les bordures */
+.border-gradient-dark { border-color: var(--gradient-dark); }

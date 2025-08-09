@@ -1,0 +1,140 @@
+---
+import logo from '../assets/logo.svg';
+---
+
+<header class="relative z-50 w-full">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo and Title -->
+      <div class="flex-1 flex-shrink-0 flex items-center gap-3">
+        <img 
+          src={logo.src} 
+          alt="Logo Altitude" 
+          width="38" 
+          height="35"
+          class="w-8 h-8 md:w-10 md:h-10"
+        />
+        <span class="text-white font-bold text-lg hidden md:block">Altitude</span>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="flex-1 justify-center hidden md:flex">
+        <nav class="flex items-center gap-8">
+          <a href="#rpc-services" class="text-white hover:text-primary-blue transition-colors duration-200">RPC providing</a>
+          <a href="#docs" class="text-white hover:text-primary-blue transition-colors duration-200">Docs</a>
+          <div class="relative group">
+            <button class="text-white hover:text-primary-blue transition-colors duration-200 flex items-center gap-2">
+              Socials
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div class="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-card-dark rounded-md shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-white hover:bg-primary-blue/20">Twitter</a>
+              <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" class="block px-4 py-2 text-white hover:bg-primary-blue/20">Telegram</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Right Actions -->
+      <div class="flex-1 flex justify-end">
+        <div class="flex items-center gap-3 md:gap-4">
+          <div class="hidden md:flex items-center gap-4">
+                      <button class="border border-primary-blue text-white font-medium text-sm px-4 py-2 rounded-full transition-all duration-200 ease-in-out hover:bg-primary-blue/20">
+            Telegram bot
+          </button>
+          <button class="bg-primary-blue hover:bg-opacity-90 text-white font-medium text-sm px-6 py-2 rounded-full transition-all duration-200 ease-in-out transform hover:scale-105">
+            Start Trading
+          </button>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <button 
+            id="mobile-menu-button"
+            class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-primary-blue backdrop-blur-sm flex items-center justify-center hover:bg-white/20 transition-all duration-200 md:hidden"
+            aria-label="Menu mobile"
+            aria-expanded="false"
+          >
+            <svg id="menu-icon" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            <svg id="close-icon" class="w-5 h-5 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu overlay -->
+  <div 
+    id="mobile-menu" 
+    class="fixed top-16 md:top-20 right-0 bottom-0 left-0 z-40 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+  >
+    <div class="bg-card-dark rounded-bl-[20px] rounded-tl-[20px] shadow-[0px_20px_20px_0px_rgba(5,15,47,0.5)] ml-auto max-w-sm w-1/3 min-h-1/3 overflow-y-auto">
+      <div class="p-5 pt-10">
+        <div class="flex flex-col items-end gap-10">
+          <nav class="flex flex-col items-end gap-5">
+            <a href="#benefits" class="text-white font-medium text-base tracking-[-0.32px] hover:text-primary-blue transition-colors duration-200">Benefits</a>
+            <a href="#features" class="text-white font-medium text-base tracking-[-0.32px] hover:text-primary-blue transition-colors duration-200">Features</a>
+            <a href="#rpc-services" class="text-white font-medium text-base tracking-[-0.32px] hover:text-primary-blue transition-colors duration-200">RPC Services</a>
+            <a href="#qa" class="text-white font-medium text-base tracking-[-0.32px] hover:text-primary-blue transition-colors duration-200">Q&A</a>
+            <a href="#docs" class="text-white font-medium text-base tracking-[-0.32px] hover:text-primary-blue transition-colors duration-200">Docs</a>
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="text-white font-medium text-base tracking-[-0.32px] hover:text-primary-blue transition-colors duration-200">Twitter</a>
+            <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" class="text-white font-medium text-base tracking-[-0.32px] hover:text-primary-blue transition-colors duration-200">Telegram</a>
+          </nav>
+          <button class="border-2 border-primary-blue text-white font-medium text-sm tracking-[-0.28px] px-4 py-2 rounded-full hover:bg-primary-blue hover:bg-opacity-20 transition-all duration-200">
+            Telegram Bot
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  function initMobileMenu() {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+    
+    if (!menuButton || !mobileMenu || !menuIcon || !closeIcon) return;
+
+    let isMenuOpen = false;
+
+    function toggleMenu() {
+      isMenuOpen ? closeMenu() : openMenu();
+    }
+
+    function openMenu() {
+      isMenuOpen = true;
+      mobileMenu.classList.remove('translate-x-full');
+      menuButton.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      menuIcon.classList.add('hidden');
+      closeIcon.classList.remove('hidden');
+    }
+
+    function closeMenu() {
+      isMenuOpen = false;
+      mobileMenu.classList.add('translate-x-full');
+      menuButton.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      menuIcon.classList.remove('hidden');
+      closeIcon.classList.add('hidden');
+    }
+
+    menuButton.addEventListener('click', toggleMenu);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        closeMenu();
+      }
+    });
+
+    const menuLinks = mobileMenu.querySelectorAll('a[href^="#"]');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initMobileMenu);
+  document.addEventListener('astro:after-swap', initMobileMenu);
+</script>
