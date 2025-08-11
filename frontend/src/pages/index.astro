@@ -14,12 +14,21 @@ import "../styles/global.css";
 
 <Layout>
 	<!-- Wrapper avec background partagé pour header et hero -->
-	<div class="relative min-h-screen bg-primary-dark overflow-hidden">
+	<div class="relative min-h-[80vh] md:min-h-screen bg-primary-dark overflow-hidden">
 		<!-- Background avec gradients et effets -->
 		<div class="absolute inset-0">
 			<!-- Gradient principal -->
 			<div class="absolute inset-0 bg-gradient-to-t from-[#0D1C50] to-transparent"></div>
 			
+			<!-- Effets de lueur pour correspondre à Figma -->
+			<!-- Mobile (comportement précédent) -->
+			<div class="md:hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] bg-primary-blue opacity-10 blur-[75px] rounded-full"></div>
+			<div class="md:hidden absolute top-1/4 right-1/4 w-[200px] h-[200px] bg-secondary-blue opacity-20 blur-[100px] rounded-full"></div>
+
+			<!-- Desktop (nouvelle version Figma) -->
+			<div class="hidden md:block absolute top-1/2 left-3/4 transform -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary-blue opacity-40 blur-[260px] rounded-full"></div>
+			<div class="hidden md:block absolute top-0 left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-blue opacity-40 blur-[250px] rounded-full"></div>
+
 			<!-- Pattern letters background -->
 			<div class="absolute inset-0 opacity-100">
 				<img 
@@ -29,12 +38,8 @@ import "../styles/global.css";
 				/>
 			</div>
 			
-			<!-- Gradient de transition vers le fond plus foncé -->
+			<!-- Gradient de transition vers le fond plus foncé --> 
 			<div class="absolute inset-0 top-[60%] bg-gradient-to-b from-transparent via-[#050F2F]/50 to-[#050F2F]"></div>
-			
-			<!-- Effets de lueur -->
-			<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[300px] h-[200px] md:w-[600px] md:h-[400px] bg-primary-blue opacity-10 blur-[75px] rounded-full"></div>
-			<div class="absolute top-1/4 right-1/4 w-[200px] h-[200px] md:w-[400px] md:h-[400px] bg-secondary-blue opacity-20 blur-[100px] rounded-full"></div>
 		</div>
 		
 		<!-- Contenu avec header et hero -->

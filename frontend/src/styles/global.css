@@ -18,6 +18,7 @@
 .bg-secondary-blue { background-color: var(--secondary-blue); }
 .bg-card-dark { background-color: var(--card-dark); }
 .bg-gradient-dark { background: var(--gradient-dark); }
+.bg-light-blue { background-color: var(--light-blue); }
 .text-light-blue { color: var(--light-blue); }
 .text-primary-blue { color: var(--primary-blue); }
 .border-primary-blue { border-color: var(--primary-blue); }
@@ -27,3 +28,23 @@
 
 /* Classes utilitaires pour les bordures */
 .border-gradient-dark { border-color: var(--gradient-dark); }
+
+/* Optimisations performance pour les feature cards */
+.feature-card-grid {
+  transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: grid-template-rows;
+  transform: translateZ(0); /* Force GPU layer */
+}
+
+.expanded-background {
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+  contain: paint;
+  transform: translateZ(0);
+}
+
+/* Utility class pour GPU acceleration */
+.transform-gpu {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}

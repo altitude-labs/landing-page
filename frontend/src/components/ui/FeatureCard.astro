@@ -12,41 +12,49 @@ export interface Props {
 const { icon, title, description, videoThumbnail, isExpanded = false } = Astro.props;
 ---
 
-<div class="feature-card-wrapper" data-expanded={isExpanded}>
-    <div class="feature-card-container relative bg-secondary-blue rounded-[10px] w-full">
-        <!-- Overlay for collapsed state -->
-        <div class="collapsed-overlay absolute inset-0 bg-gradient-dark rounded-[10px] transition-opacity duration-300 pointer-events-none"></div>
+<div class="feature-card-wrapper" data-expanded={isExpanded} data-video-src={videoThumbnail}>
+    <div class="feature-card-container relative rounded-[10px] w-full border border-transparent overflow-hidden bg-gradient-dark">
+        <!-- Pseudo-élément pour la bordure animée -->
+        
+        <!-- Arrière-plan pour l'état déplié - Optimisé GPU -->
+        <div class="expanded-background absolute inset-0 pointer-events-none opacity-0">
+            <!-- Dégradé du bleu vers bleu clair (en arrière-plan) -->
+            <div class="absolute inset-0 bg-gradient-to-b from-[#2A45A3]/20 via-[#2A45A3] to-[#4F6BCC] transform-gpu"></div>
+            <!-- Motif de lettres (par-dessus le dégradé) -->
+            <div class="absolute inset-0 opacity-100 transform-gpu">
+                <img src={backgroundLettersDesktop.src} alt="" class="w-full h-full object-cover" width="2151" height="1429" />
+            </div>
+            <!-- Effet ellipse optimisé - Remplacé par gradient -->
+            <div class="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 w-[834px] h-[286px] opacity-30 rounded-full transform-gpu"
+                 style="background: radial-gradient(ellipse 834px 286px at center, #1F2937 0%, transparent 70%);"></div>
+        </div>
 
-        <!-- Content -->
-        <div class="relative">
+        <!-- Grid container pour animation fluide -->
+        <div class="feature-card-grid grid grid-rows-[auto_0fr]">
             <!-- Header -->
-            <div class="feature-card-header flex items-center gap-[15px] p-5 cursor-pointer">
+            <div class="feature-card-header flex items-center gap-[15px] p-5 cursor-pointer relative z-10">
                 <div class="w-6 h-6 flex-shrink-0">
-                    <img src={icon} alt="" class="w-full h-full object-contain" />
+                    <img src={icon} alt="" class="w-full h-full object-contain" width="24" height="24" />
                 </div>
                 <h3 class="text-white font-medium text-lg tracking-[-0.36px] flex-1">
                     {title}
                 </h3>
             </div>
-            <!-- Body -->
-            <div class="feature-card-body overflow-hidden" style="max-height: 0; transition: max-height 0.4s ease-in-out;">
-                <div class="relative p-[30px] pt-5">
-                    <!-- Background effects are now part of the main container, so they are always there -->
-                    <div class="absolute inset-0 overflow-hidden rounded-b-[10px] pointer-events-none">
-                        <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full">
-                            <img src={backgroundLettersDesktop.src} alt="" class="w-full h-full object-cover" />
-                        </div>
-                        <div class="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 w-[834px] h-[286px] bg-primary-dark opacity-30 blur-[150px] rounded-full"></div>
-                    </div>
+            
+            <!-- Body - Grid item qui s'expand -->
+            <div class="feature-card-body overflow-hidden">
+                <div class="relative px-5 pb-5 pt-0">
                     <div class="relative z-10 flex flex-col gap-5">
                         {description && (
                             <p class="text-white/50 font-medium text-sm leading-[1.6] tracking-[-0.28px]">
                                 {description}
                             </p>
                         )}
+                        
+                        <!-- Video thumbnail pour mobile UNIQUEMENT -->
                         {videoThumbnail && (
-                            <div class="relative bg-white rounded-[5px] overflow-hidden w-full h-[181px]">
-                                <img src={videoThumbnail} alt="Video thumbnail" class="w-full h-full object-cover"/>
+                            <div class="lg:hidden relative bg-white rounded-[5px] overflow-hidden w-full aspect-[290/181]">
+                                <img src={videoThumbnail} alt="Video thumbnail" class="w-full h-full object-cover" width="290" height="181" />
                                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                                     <div class="w-[45px] h-[45px] bg-secondary-blue/80 backdrop-blur-[1.679px] rounded-full flex items-center justify-center cursor-pointer hover:bg-secondary-blue transition-colors">
                                         <svg class="w-[27px] h-[27px] text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
@@ -62,45 +70,133 @@ const { icon, title, description, videoThumbnail, isExpanded = false } = Astro.p
         </div>
     </div>
 </div>
+<style>
+    /* Pseudo-élément pour bordure animée - Optimisé GPU */
+    .feature-card-container::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 10px;
+        border: 1px solid rgba(79, 115, 255, 0.5);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease-out;
+        will-change: opacity;
+        transform: translateZ(0); /* Force GPU layer */
+    }
+    
+    .feature-card-container.active-feature::after {
+        opacity: 1;
+    }
+    
+    /* État expanded pour grid */
+    .feature-card-wrapper[data-expanded="true"] .feature-card-grid {
+        grid-template-rows: auto 1fr;
+    }
+    
+    .feature-card-wrapper[data-expanded="true"] .expanded-background {
+        opacity: 1;
+    }
 
+    .feature-card-grid {
+        grid-template-rows: auto 0fr;            /* état fermé */
+        transition: grid-template-rows .3s cubic-bezier(.4,0,.2,1);
+    }
+    .expanded-background {
+        transition: opacity .3s cubic-bezier(.4,0,.2,1);
+        will-change: opacity;
+        contain: paint; /* limite la zone de repaint */
+    }
+    .feature-card-body > * { 
+        overflow: hidden;
+        min-height: 0; /* important avec grid */
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .feature-card-grid,
+        .expanded-background,
+        .feature-card-container::after { transition: none !important; }
+    }
+</style>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const featureCards = document.querySelectorAll('.feature-card-wrapper');
 
-    const setCardState = (card: HTMLElement, isExpanded: boolean) => {
-        const body = card.querySelector('.feature-card-body') as HTMLElement;
-        const overlay = card.querySelector('.collapsed-overlay') as HTMLElement;
-
+    const setCardState = (card, isExpanded) => {
+        const container = card.querySelector('.feature-card-container');
+        if (!container) return;
+        
+        // Simple toggle des classes - Les animations CSS font le reste
         if (isExpanded) {
-            overlay.style.opacity = '0';
-            body.style.maxHeight = body.scrollHeight + 'px';
+            container.classList.add('active-feature');
         } else {
-            overlay.style.opacity = '1';
-            body.style.maxHeight = '0';
+            container.classList.remove('active-feature');
         }
+        
         card.setAttribute('data-expanded', String(isExpanded));
     };
 
-    featureCards.forEach(card => {
-        const header = card.querySelector('.feature-card-header') as HTMLElement;
+    // Configuration initiale
+    featureCards.forEach((card, index) => {
+        const header = card.querySelector('.feature-card-header');
+        if (!header) return;
+        
         const isInitiallyExpanded = card.getAttribute('data-expanded') === 'true';
-        setCardState(card, isInitiallyExpanded);
+        
+        // État initial selon le breakpoint
+        if (window.innerWidth >= 1024) {
+            // Desktop: respecter l'état initial
+            setCardState(card, isInitiallyExpanded);
+        } else {
+            // Mobile: toutes fermées initialement
+            setCardState(card, false);
+        }
 
+        // Gestion des clics
         header.addEventListener('click', () => {
             const isCurrentlyExpanded = card.getAttribute('data-expanded') === 'true';
-
-            // Close all other cards before opening a new one
-            if (!isCurrentlyExpanded) {
-                featureCards.forEach(otherCard => {
-                    if (otherCard !== card) {
-                        setCardState(otherCard as HTMLElement, false);
-                    }
-                });
+            
+            if (window.innerWidth >= 1024) {
+                // Desktop: une seule carte ouverte à la fois
+                if (!isCurrentlyExpanded) {
+                    featureCards.forEach(otherCard => {
+                        setCardState(otherCard, otherCard === card);
+                    });
+                }
+            } else {
+                // Mobile: accordion classique
+                if (!isCurrentlyExpanded) {
+                    // Fermer les autres cartes
+                    featureCards.forEach(otherCard => {
+                        if (otherCard !== card) {
+                            setCardState(otherCard, false);
+                        }
+                    });
+                }
+                setCardState(card, !isCurrentlyExpanded);
             }
-
-            // Toggle the clicked card
-            setCardState(card as HTMLElement, !isCurrentlyExpanded);
         });
+    });
+
+    // Gestion du resize pour ajuster les états
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            const isDesktop = window.innerWidth >= 1024;
+            
+            featureCards.forEach((card, index) => {
+                const isCurrentlyExpanded = card.getAttribute('data-expanded') === 'true';
+                
+                if (isDesktop) {
+                    // Desktop: garder une carte ouverte
+                    const shouldBeExpanded = index === 0 && !Array.from(featureCards).some(c => c.getAttribute('data-expanded') === 'true');
+                    setCardState(card, shouldBeExpanded || isCurrentlyExpanded);
+                } else {
+                    // Mobile: fermer toutes les cartes
+                    setCardState(card, false);
+                }
+            });
+        }, 100);
     });
 });
 </script>

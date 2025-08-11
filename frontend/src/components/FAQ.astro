@@ -1,7 +1,7 @@
 ---
 import SectionBadge from './ui/SectionBadge.astro';
 import FAQCard from './ui/FAQCard.astro';
-import backgroundLetters2 from '../assets/background-letters2.svg';
+import backgroundLettersDesktop from '../assets/background-letters-desk.svg';
 ---
 
 <section class="relative py-0 pb-20 md:pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#020921] via-[#030b2a] to-[#050F2F] overflow-hidden">
@@ -10,9 +10,9 @@ import backgroundLetters2 from '../assets/background-letters2.svg';
     <!-- Pattern background avec dégradé d'opacité -->
     <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1585px] h-[1053px]">
       <img 
-        src={backgroundLetters2.src} 
+        src={backgroundLettersDesktop.src} 
         alt="" 
-        class="w-full h-full object-contain"
+        class="w-full h-full object-cover"
         style="mask: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,1) 100%); -webkit-mask: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,1) 100%);"
       />
     </div>

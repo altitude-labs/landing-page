@@ -51,63 +51,138 @@ const videoThumbnail = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/
     </div>
 
     <!-- Features Grid -->
-    <div class="max-w-md mx-auto md:max-w-2xl lg:max-w-4xl">
-      <!-- Ligne de séparation -->
-      <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-5"></div>
-      
-      <div class="flex flex-col gap-5">
-        <!-- Feature 1 - Expanded -->
-        <FeatureCard 
-          icon={chartIcon}
-          title="Live charts, always on"
-          description="See your trades evolve in real time. No refreshes. No lag. Just raw market data, updating live."
-          videoThumbnail={videoThumbnail}
-          isExpanded={true}
-        />
+    <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
+      <div class="max-w-md mx-auto md:max-w-2xl lg:max-w-none">
+        <!-- Ligne de séparation -->
+        <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-5"></div>
         
-        <!-- Feature 2 -->
-        <FeatureCard 
-          icon={filterIcon}
-          title="Scan & filter trending tokens"
-          description="Filter through the noise and find the tokens that matter. Customize your filters and save them for later."
-          videoThumbnail={videoThumbnail}
-        />
+        <div class="flex flex-col gap-5" id="features-list">
+          <!-- Feature 1 - Expanded by default on desktop -->
+          <FeatureCard 
+            icon={chartIcon}
+            title="Live charts, always on"
+            description="See your trades evolve in real time. No refreshes. No lag. Just raw market data, updating live."
+            videoThumbnail={videoThumbnail}
+            isExpanded={true}
+          />
+          
+          <!-- Feature 2 -->
+          <FeatureCard 
+            icon={filterIcon}
+            title="Scan & filter trending tokens"
+            description="Filter through the noise and find the tokens that matter. Customize your filters and save them for later."
+            videoThumbnail={videoThumbnail}
+          />
+          
+          <!-- Feature 3 -->
+          <FeatureCard 
+            icon={insightIcon}
+            title="Accurate market insights"
+            description="Gain an edge with our real-time market insights. Understand the sentiment and make informed decisions."
+            videoThumbnail={videoThumbnail}
+          />
+          
+          <!-- Feature 4 -->
+          <FeatureCard 
+            icon={organizeIcon}
+            title="Organize your tokens"
+            description="Group your tokens into portfolios, create watchlists, and keep track of your assets with ease."
+            videoThumbnail={videoThumbnail}
+          />
+          
+          <!-- Feature 5 -->
+          <FeatureCard 
+            icon={portfolioIcon}
+            title="A complete portfolio page"
+            description="A detailed overview of your assets, performance, and history. All in one place."
+            videoThumbnail={videoThumbnail}
+          />
+          
+          <!-- Feature 6 -->
+          <FeatureCard 
+            icon={routingIcon}
+            title="Ultra-fast smart order routing"
+            description="Our smart order routing finds the best price across multiple exchanges, ensuring you get the best deal."
+            videoThumbnail={videoThumbnail}
+          />
+        </div>
         
-        <!-- Feature 3 -->
-        <FeatureCard 
-          icon={insightIcon}
-          title="Accurate market insights"
-          description="Gain an edge with our real-time market insights. Understand the sentiment and make informed decisions."
-          videoThumbnail={videoThumbnail}
-        />
-        
-        <!-- Feature 4 -->
-        <FeatureCard 
-          icon={organizeIcon}
-          title="Organize your tokens"
-          description="Group your tokens into portfolios, create watchlists, and keep track of your assets with ease."
-          videoThumbnail={videoThumbnail}
-        />
-        
-        <!-- Feature 5 -->
-        <FeatureCard 
-          icon={portfolioIcon}
-          title="A complete portfolio page"
-          description="A detailed overview of your assets, performance, and history. All in one place."
-          videoThumbnail={videoThumbnail}
-        />
-        
-        <!-- Feature 6 -->
-        <FeatureCard 
-          icon={routingIcon}
-          title="Ultra-fast smart order routing"
-          description="Our smart order routing finds the best price across multiple exchanges, ensuring you get the best deal."
-          videoThumbnail={videoThumbnail}
-        />
+        <!-- Ligne de séparation finale -->
+        <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mt-5"></div>
       </div>
-      
-      <!-- Ligne de séparation finale -->
-      <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mt-5"></div>
+
+      <!-- Right side - Video/GIF display for desktop -->
+      <div class="hidden lg:block sticky top-28">
+        <div class="relative aspect-square bg-secondary-blue rounded-[10px] overflow-hidden">
+           <div class="absolute inset-0 bg-gradient-dark rounded-[10px]"></div>
+          <img id="feature-image-display" 
+               src={videoThumbnail} 
+               alt="Feature preview" 
+               width="500" 
+               height="500"
+               class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 will-change-opacity"
+               style="transform: translateZ(0);">
+        </div>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.innerWidth < 1024) return; // lg breakpoint
+
+    const featuresList = document.getElementById('features-list');
+    if (!featuresList) return;
+    
+    const featureCards = featuresList.querySelectorAll('.feature-card-wrapper');
+    const imageDisplay = document.getElementById('feature-image-display');
+    if (!imageDisplay) return;
+
+    // Gestion simple et optimisée de l'affichage de l'image
+    function updateImageDisplay(activeCard) {
+        if (activeCard && activeCard.dataset.videoSrc) {
+            const newSrc = activeCard.dataset.videoSrc;
+            if (imageDisplay.src !== newSrc) {
+                // Transition CSS optimisée
+                imageDisplay.style.opacity = '0';
+                
+                // Changement d'image après fade out
+                setTimeout(() => {
+                    imageDisplay.src = newSrc;
+                    imageDisplay.style.opacity = '1';
+                }, 150);
+            }
+        }
+    }
+
+    // Observer les changements d'état des cartes
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'data-expanded') {
+                const card = mutation.target;
+                const isExpanded = card.getAttribute('data-expanded') === 'true';
+                
+                if (isExpanded) {
+                    updateImageDisplay(card);
+                }
+            }
+        });
+    });
+
+    // Observer chaque carte
+    featureCards.forEach(card => {
+        observer.observe(card, { attributes: true, attributeFilter: ['data-expanded'] });
+        
+        // Initialiser l'image pour la carte déjà expandée
+        if (card.getAttribute('data-expanded') === 'true') {
+            updateImageDisplay(card);
+        }
+    });
+
+    // Cleanup lors du déchargement
+    window.addEventListener('beforeunload', () => {
+        observer.disconnect();
+    });
+});
+</script>
