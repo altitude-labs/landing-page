@@ -10,11 +10,11 @@ import logo from '../assets/logo.svg';
         <img 
           src={logo.src} 
           alt="Logo Altitude" 
-          width="38" 
-          height="35"
+          width="32" 
+          height="32"
           class="w-8 h-8 md:w-10 md:h-10"
         />
-        <span class="text-white font-bold text-lg hidden md:block">Altitude</span>
+        <span class="text-white font-bold text-2xl hidden md:block">altitude</span>
       </div>
 
       <!-- Desktop Menu -->
@@ -39,13 +39,17 @@ import logo from '../assets/logo.svg';
       <div class="flex-1 flex justify-end">
         <div class="flex items-center gap-3 md:gap-4">
           <div class="hidden md:flex items-center gap-4">
-                      <button class="border border-primary-blue text-white font-medium text-sm px-4 py-2 rounded-full transition-all duration-200 ease-in-out hover:bg-primary-blue/20">
-            Telegram bot
-          </button>
-          <button class="bg-primary-blue hover:bg-opacity-90 text-white font-medium text-sm px-6 py-2 rounded-full transition-all duration-200 ease-in-out transform hover:scale-105">
-            Start Trading
-          </button>
+            <button class="border border-primary-blue text-white font-medium text-sm px-4 py-2 rounded-full transition-all duration-200 ease-in-out hover:bg-primary-blue/20">
+              Telegram bot
+            </button>
+            <button class="bg-primary-blue hover:bg-opacity-90 text-white font-medium text-sm px-6 py-2 rounded-full transition-all duration-200 ease-in-out transform hover:scale-105">
+              Launch dApp
+            </button>
           </div>
+
+          <button class="bg-primary-blue hover:bg-opacity-90 text-white font-medium text-sm px-4 py-2 rounded-full transition-all duration-200 ease-in-out md:hidden">
+            Launch dApp
+          </button>
 
           <!-- Mobile Menu Button -->
           <button 
