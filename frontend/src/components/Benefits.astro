@@ -1,10 +1,15 @@
 ---
-import heartzIcon from '../assets/Heartz.svg';
 import SectionBadge from './ui/SectionBadge.astro';
 import BenefitsCard from './ui/BenefitsCard.astro';
+
+const lightningIcon = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS16YXAtaWNvbiBsdWNpZGUtemFwIj48cGF0aCBkPSJNNCAxNGExIDEgMCAwIDEtLjc4LTEuNjNsOS45LTEwLjJhLjUuNSAwIDAgMSAuODYuNDZsLTEuOTIgNi4wMkExIDEgMCAwIDAgMTMgMTBoN2ExIDEgMCAwIDEgLjc4IDEuNjNsLTkuOSAxMC4yYS41LjUgMCAwIDEtLjg2LS40NmwxLjkyLTYuMDJBMSAxIDAgMCAwIDExIDE0eiIvPjwvc3ZnPg==';
+const liquidityIcon = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1kcm9wbGV0LWljb24gbHVjaWRlLWRyb3BsZXQiPjxwYXRoIGQ9Ik0xMiAyMmE3IDcgMCAwIDAgNy03YzAtMi0xLTMuOS0zLTUuNXMtMy41LTQtNC02LjVjLS41IDIuNS0yIDQuOS00IDYuNUM2IDExLjEgNSAxMyA1IDE1YTcgNyAwIDAgMCA3IDd6Ii8+PC9zdmc+'
+const toolsIcon = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS10b29sLWNhc2UtaWNvbiBsdWNpZGUtdG9vbC1jYXNlIj48cGF0aCBkPSJNMTAgMTVoNCIvPjxwYXRoIGQ9Im0xNC44MTcgMTAuOTk1LS45NzEtMS40NSAxLjAzNC0xLjIzMmEyIDIgMCAwIDAtMi4wMjUtMy4yMzhsLTEuODIuMzY0TDkuOTEgMy44ODVhMiAyIDAgMCAwLTMuNjI1Ljc0OEw2LjE0MSA2LjU1bC0xLjcyNS40MjZhMiAyIDAgMCAwLS4xOSAzLjc1NmwuNjU3LjI3Ii8+PHBhdGggZD0ibTE4LjgyMiAxMC45OTUgMi4yNi01LjM4YTEgMSAwIDAgMC0uNTU3LTEuMzE4TDE2Ljk1NCAyLjlhMSAxIDAgMCAwLTEuMjgxLjUzM2wtLjkyNCAyLjEyMiIvPjxwYXRoIGQ9Ik00IDEyLjAwNkExIDEgMCAwIDEgNC45OTQgMTFIMTlhMSAxIDAgMCAxIDEgMXY3YTIgMiAwIDAgMS0yIDJINmEyIDIgMCAwIDEtMi0yeiIvPjwvc3ZnPg=='
 ---
 
-<section class="relative py-12 pt-2 md:py-32 px-4 sm:px-6 lg:px-8 bg-primary-dark">
+
+
+<section class="relative py-12 pt-12 md:py-32 px-4 sm:px-6 lg:px-8 bg-primary-dark">
   <div class="max-w-7xl mx-auto">
     <!-- Header Section -->
     <div class="flex flex-col items-center text-center mb-12 md:mb-20">
@@ -26,17 +31,17 @@ import BenefitsCard from './ui/BenefitsCard.astro';
     <div class="max-w-md mx-auto md:max-w-2xl lg:max-w-7xl">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0">
         <BenefitsCard 
-          icon={heartzIcon.src}
+          icon={lightningIcon}
           title="Lightning-Fast Execution"
           description="Trades confirm in seconds with ultra-low latency infrastructure."
         />
         <BenefitsCard 
-          icon={heartzIcon.src}
+          icon={liquidityIcon}
           title="Deep Liquidity Access"
           description="Tap into aggregated liquidity pools for the best possible prices, every time."
         />
         <BenefitsCard 
-          icon={heartzIcon.src}
+          icon={toolsIcon}
           title="Pro Trader Tools"
           description="Advanced charting, smart order routing, and real-time market scanners — all in one place."
         />

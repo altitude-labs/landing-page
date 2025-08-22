@@ -2,17 +2,58 @@
 import logoGlow from '../assets/A_CC_Small1.png';
 ---
 
-<footer class="relative px-4 sm:px-6 lg:px-8 bg-primary-dark pt-10 md:pt-16 pb-40">
+<footer class="relative px-4 sm:px-6 lg:px-8 bg-primary-dark pt-10 md:pt-16 overflow-hidden">
   <div class="max-w-7xl mx-auto">
-    <div class="max-w-2xl flex flex-col gap-6">
-      <nav class="flex flex-col gap-5 text-left">
+    <!-- Section des liens - Responsive: vertical sur mobile, horizontal sur desktop -->
+    <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-6 mb-16">
+      <!-- Copyright à gauche sur desktop -->
+      <p class="text-white/60 text-sm md:text-base order-2 md:order-1">© {new Date().getFullYear()} Altitude Labs</p>
+      
+      <!-- Navigation à droite sur desktop -->
+      <nav class="flex flex-col md:flex-row gap-5 md:gap-8 text-left order-1 md:order-2">
         <a href="#" class="text-white hover:text-primary-blue transition-colors text-base">Index</a>
         <a href="#" class="text-white hover:text-primary-blue transition-colors text-base">Privacy Policy</a>
         <a href="#" class="text-white hover:text-primary-blue transition-colors text-base">Approach</a>
         <a href="#" class="text-white hover:text-primary-blue transition-colors text-base">Support</a>
       </nav>
+    </div>
 
-      <p class="text-white/60 text-sm md:text-base">© {new Date().getFullYear()} Altitude Labs</p>
+    <!-- Logo Arc Effect - En dessous de la section des liens -->
+    <div class="relative w-full h-[200px] md:h-[300px] pointer-events-none">
+      <!-- Arc Container - Centered -->
+      <div class="absolute bottom-0 left-9/20 transform -translate-x-1/2 translate-y-1/3 w-[850px] h-[400px] md:w-[1100px] md:h-[500px]">
+        
+        <!-- Logo Arc - U inversé (arc from left to right through top) -->
+        
+        <!-- Logo 2 - Gauche-Centre -->
+        <div class="absolute bottom-[80px] left-[140px] md:bottom-[100px] md:left-[210px]">
+          <div class="w-60 h-60 md:w-72 md:h-72 transform rotate-[-28.652deg] opacity-100">
+            <img src={logoGlow.src} alt="Altitude Logo" class="w-full h-full object-contain filter brightness-100" />
+          </div>
+        </div>
+        
+        <!-- Logo 3 - Centre (point le plus haut) -->
+        <div class="absolute bottom-[140px] left-1/2 transform -translate-x-1/2 md:bottom-[180px]">
+          <div class="w-60 h-60 md:w-72 md:h-72 transform rotate-[12.055deg] opacity-100">
+            <img src={logoGlow.src} alt="Altitude Logo" class="w-full h-full object-contain filter brightness-100" />
+          </div>
+        </div>
+        
+        <!-- Logo 4 - Centre-Droite -->
+        <div class="absolute bottom-[120px] right-[140px] md:bottom-[160px] md:right-[220px]">
+          <div class="w-60 h-60 md:w-72 md:h-72 transform rotate-[51.548deg] opacity-100">
+            <img src={logoGlow.src} alt="Altitude Logo" class="w-full h-full object-contain filter brightness-100" />
+          </div>
+        </div>
+        
+        <!-- Logo 5 - Droite -->
+        <div class="absolute bottom-[50px] right-[60px] md:bottom-[30px] md:right-[80px]">
+          <div class="w-60 h-60 md:w-72 md:h-72 transform rotate-[91.793deg] opacity-0 md:opacity-100">
+            <img src={logoGlow.src} alt="Altitude Logo" class="w-full h-full object-contain filter brightness-100" />
+          </div>
+        </div>
+        
+      </div>
     </div>
   </div>
 </footer>

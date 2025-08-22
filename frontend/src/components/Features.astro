@@ -3,16 +3,19 @@ import SectionBadge from './ui/SectionBadge.astro';
 import FeatureCard from './ui/FeatureCard.astro';
 import backgroundLettersDesktop from '../assets/background-letters-desk.svg';
 
-// Placeholder pour les icônes - vous pourrez les remplacer par vos vraies icônes
-const chartIcon = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3e%3cpath d='M3 3v18h18'/%3e%3cpath d='m19 9-5 5-4-4-3 3'/%3e%3c/svg%3e";
-const filterIcon = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3e%3cpolygon points='22,3 2,3 10,12.46 10,19 14,21 14,12.46'/%3e%3c/svg%3e";
-const insightIcon = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3e%3cpath d='M9 11H1l8-8 8 8'/%3e%3cpath d='M9 21c6-1 12-7 12-13'/%3e%3c/svg%3e";
-const organizeIcon = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3e%3crect width='7' height='9' x='3' y='3' rx='1'/%3e%3crect width='7' height='5' x='14' y='3' rx='1'/%3e%3crect width='7' height='9' x='14' y='12' rx='1'/%3e%3crect width='7' height='5' x='3' y='16' rx='1'/%3e%3c/svg%3e";
-const portfolioIcon = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3e%3cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3e%3cpolyline points='14,2 14,8 20,8'/%3e%3cline x1='16' y1='13' x2='8' y2='13'/%3e%3cline x1='16' y1='17' x2='8' y2='17'/%3e%3cpolyline points='10,9 9,9 8,9'/%3e%3c/svg%3e";
-const routingIcon = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3e%3cpolyline points='9,11 12,14 20,6'/%3e%3cpath d='m21 3-6 6-4-4-6 6'/%3e%3cpath d='m21 3-6 6-4-4-6 6'/%3e%3c/svg%3e";
+// Media imports
+import liveCharts from "../assets/LIVE_CHARTS.png";
+import scanFilter from "../assets/SCAN_AND_FILTER.png";
+import organizeTokens from "../assets/Organize_Part.mp4";
+import portfolioPage from "../assets/PORTFOLIO.png";
+import smartOrderRouting from "../assets/SMART_ORDER_ROUTING.png";
 
-// Placeholder pour la thumbnail de la vidéo
-const videoThumbnail = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='290' height='181' viewBox='0 0 290 181' fill='%23f3f4f6'%3e%3crect width='290' height='181' fill='%23374151'/%3e%3ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23ffffff' font-family='Inter' font-size='14'%3eTrading Interface Preview%3c/text%3e%3c/svg%3e";
+// Placeholder pour les icônes - vous pourrez les remplacer par vos vraies icônes
+const chartIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jaGFydC1hcmVhLWljb24gbHVjaWRlLWNoYXJ0LWFyZWEiPjxwYXRoIGQ9Ik0zIDN2MTZhMiAyIDAgMCAwIDIgMmgxNiIvPjxwYXRoIGQ9Ik03IDExLjIwN2EuNS41IDAgMCAxIC4xNDYtLjM1M2wyLTJhLjUuNSAwIDAgMSAuNzA4IDBsMy4yOTIgMy4yOTJhLjUuNSAwIDAgMCAuNzA4IDBsNC4yOTItNC4yOTJhLjUuNSAwIDAgMSAuODU0LjM1M1YxNmExIDEgMCAwIDEtMSAxSDhhMSAxIDAgMCAxLTEtMXoiLz48L3N2Zz4=";
+const filterIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1saXN0LWZpbHRlci1wbHVzLWljb24gbHVjaWRlLWxpc3QtZmlsdGVyLXBsdXMiPjxwYXRoIGQ9Ik0xMCAxOGg0Ii8+PHBhdGggZD0iTTExIDZIMyIvPjxwYXRoIGQ9Ik0xNSA2aDYiLz48cGF0aCBkPSJNMTggOVYzIi8+PHBhdGggZD0iTTcgMTJoOCIvPjwvc3ZnPg==";
+const organizeIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1mb2xkZXItdHJlZS1pY29uIGx1Y2lkZS1mb2xkZXItdHJlZSI+PHBhdGggZD0iTTIwIDEwYTEgMSAwIDAgMCAxLTFWNmExIDEgMCAwIDAtMS0xaC0yLjVhMSAxIDAgMCAxLS44LS40bC0uOS0xLjJBMSAxIDAgMCAwIDE1IDNoLTJhMSAxIDAgMCAwLTEgMXY1YTEgMSAwIDAgMCAxIDFaIi8+PHBhdGggZD0iTTIwIDIxYTEgMSAwIDAgMCAxLTF2LTNhMSAxIDAgMCAwLTEtMWgtMi45YTEgMSAwIDAgMS0uODgtLjU1bC0uNDItLjg1YTEgMSAwIDAgMC0uOTItLjZIMTNhMSAxIDAgMCAwLTEgMXY1YTEgMSAwIDAgMCAxIDFaIi8+PHBhdGggZD0iTTMgNWEyIDIgMCAwIDAgMiAyaDMiLz48cGF0aCBkPSJNMyAzdjEzYTIgMiAwIDAgMCAyIDJoMyIvPjwvc3ZnPg==";
+const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS13YWxsZXQtbWluaW1hbC1pY29uIGx1Y2lkZS13YWxsZXQtbWluaW1hbCI+PHBhdGggZD0iTTE3IDE0aC4wMSIvPjxwYXRoIGQ9Ik03IDdoMTJhMiAyIDAgMCAxIDIgMnYxMGEyIDIgMCAwIDEtMiAySDVhMiAyIDAgMCAxLTItMlY1YTIgMiAwIDAgMSAyLTJoMTQiLz48L3N2Zz4=";
+const routingIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1nYXVnZS1pY29uIGx1Y2lkZS1nYXVnZSI+PHBhdGggZD0ibTEyIDE0IDQtNCIvPjxwYXRoIGQ9Ik0zLjM0IDE5YTEwIDEwIDAgMSAxIDE3LjMyIDAiLz48L3N2Zz4=";
 ---
 
 <section class="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-primary-dark overflow-hidden">
@@ -62,7 +65,7 @@ const videoThumbnail = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/
             icon={chartIcon}
             title="Live charts, always on"
             description="See your trades evolve in real time. No refreshes. No lag. Just raw market data, updating live."
-            videoThumbnail={videoThumbnail}
+            media={{ type: 'image', src: liveCharts.src }}
             isExpanded={true}
           />
           
@@ -71,15 +74,7 @@ const videoThumbnail = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/
             icon={filterIcon}
             title="Scan & filter trending tokens"
             description="Never miss a move. Quickly spot tokens on the rise and filter by volume, trend, or market cap."
-            videoThumbnail={videoThumbnail}
-          />
-          
-          <!-- Feature 3 -->
-          <FeatureCard 
-            icon={insightIcon}
-            title="Accurate market insights"
-            description="Reliable data, smarter decisions. Get precise, actionable insights to anticipate market moves."
-            videoThumbnail={videoThumbnail}
+            media={{ type: 'image', src: scanFilter.src }}
           />
           
           <!-- Feature 4 -->
@@ -87,7 +82,7 @@ const videoThumbnail = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/
             icon={organizeIcon}
             title="Organize your tokens"
             description="Stay on top of your investments. Sort, track, and manage your assets all from one dashboard."
-            videoThumbnail={videoThumbnail}
+            media={{ type: 'video', src: organizeTokens }}
           />
           
           <!-- Feature 5 -->
@@ -95,7 +90,7 @@ const videoThumbnail = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/
             icon={portfolioIcon}
             title="A complete portfolio page"
             description="Your portfolio at a glance. See performance, allocation, and history in a clear, intuitive view."
-            videoThumbnail={videoThumbnail}
+            media={{ type: 'image', src: portfolioPage.src }}
           />
           
           <!-- Feature 6 -->
@@ -103,7 +98,7 @@ const videoThumbnail = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/
             icon={routingIcon}
             title="Ultra-fast smart order routing"
             description="Lightning-fast execution, optimal prices. Our tech routes every trade for the best available price, instantly."
-            videoThumbnail={videoThumbnail}
+            media={{ type: 'image', src: smartOrderRouting.src }}
           />
         </div>
         
@@ -116,12 +111,16 @@ const videoThumbnail = "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/
         <div class="relative aspect-square bg-secondary-blue rounded-[10px] overflow-hidden">
            <div class="absolute inset-0 bg-gradient-dark rounded-[10px]"></div>
           <img id="feature-image-display" 
-               src={videoThumbnail} 
+               src={liveCharts.src} 
                alt="Feature preview" 
                width="500" 
                height="500"
                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 will-change-opacity"
                style="transform: translateZ(0);">
+          <video id="feature-video-display"
+                 autoplay loop muted playsinline
+                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 will-change-opacity opacity-0"
+                 style="transform: translateZ(0);"></video>
         </div>
       </div>
     </div>
@@ -136,47 +135,59 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!featuresList) return;
     
     const featureCards = featuresList.querySelectorAll('.feature-card-wrapper');
-    const imageDisplay = document.getElementById('feature-image-display');
-    if (!imageDisplay) return;
+    const imageDisplay = document.getElementById('feature-image-display') as HTMLImageElement | null;
+    const videoDisplay = document.getElementById('feature-video-display') as HTMLVideoElement | null;
+    if (!imageDisplay || !videoDisplay) return;
 
-    // Gestion simple et optimisée de l'affichage de l'image
-    function updateImageDisplay(activeCard) {
-        if (activeCard && activeCard.dataset.videoSrc) {
-            const newSrc = activeCard.dataset.videoSrc;
-            if (imageDisplay.src !== newSrc) {
-                // Transition CSS optimisée
-                imageDisplay.style.opacity = '0';
-                
-                // Changement d'image après fade out
-                setTimeout(() => {
-                    imageDisplay.src = newSrc;
-                    imageDisplay.style.opacity = '1';
-                }, 150);
+    function updateMediaDisplay(activeCard: Element) {
+        const mediaSrc = (activeCard as HTMLElement).dataset.mediaSrc;
+        const mediaType = (activeCard as HTMLElement).dataset.mediaType;
+
+        if (!mediaSrc || !mediaType) return;
+
+        const isImage = mediaType === 'image';
+        
+        // Fade out both elements first
+        imageDisplay.style.opacity = '0';
+        videoDisplay.style.opacity = '0';
+        
+        setTimeout(() => {
+            if (isImage) {
+                if (imageDisplay.src !== mediaSrc) {
+                    imageDisplay.src = mediaSrc;
+                }
+                imageDisplay.style.opacity = '1';
+                videoDisplay.pause();
+                videoDisplay.currentTime = 0;
+            } else {
+                if (videoDisplay.src !== mediaSrc) {
+                    videoDisplay.src = mediaSrc;
+                }
+                videoDisplay.style.opacity = '1';
+                videoDisplay.play();
             }
-        }
+        }, 150); // Match this with transition duration
     }
 
-    // Observer les changements d'état des cartes
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
             if (mutation.type === 'attributes' && mutation.attributeName === 'data-expanded') {
-                const card = mutation.target;
+                const card = mutation.target as Element;
                 const isExpanded = card.getAttribute('data-expanded') === 'true';
                 
                 if (isExpanded) {
-                    updateImageDisplay(card);
+                    updateMediaDisplay(card);
                 }
             }
         });
     });
 
-    // Observer chaque carte
     featureCards.forEach(card => {
         observer.observe(card, { attributes: true, attributeFilter: ['data-expanded'] });
         
         // Initialiser l'image pour la carte déjà expandée
         if (card.getAttribute('data-expanded') === 'true') {
-            updateImageDisplay(card);
+            updateMediaDisplay(card);
         }
     });
 

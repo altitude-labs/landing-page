@@ -1,18 +1,24 @@
 ---
 import backgroundLettersDesktop from '../../assets/background-letters-desk.svg';
 
+export interface Media {
+  type: 'image' | 'video';
+  src: string;
+  alt?: string;
+}
+
 export interface Props {
   icon: string;
   title: string;
   description?: string;
-  videoThumbnail?: string;
+  media?: Media;
   isExpanded?: boolean;
 }
 
-const { icon, title, description, videoThumbnail, isExpanded = false } = Astro.props;
+const { icon, title, description, media, isExpanded = false } = Astro.props;
 ---
 
-<div class="feature-card-wrapper" data-expanded={isExpanded} data-video-src={videoThumbnail}>
+<div class="feature-card-wrapper" data-expanded={isExpanded} data-media-src={media?.src} data-media-type={media?.type}>
     <div class="feature-card-container relative rounded-[10px] w-full border border-transparent overflow-hidden bg-gradient-dark">
         <!-- Pseudo-élément pour la bordure animée -->
         
@@ -51,17 +57,15 @@ const { icon, title, description, videoThumbnail, isExpanded = false } = Astro.p
                             </p>
                         )}
                         
-                        <!-- Video thumbnail pour mobile UNIQUEMENT -->
-                        {videoThumbnail && (
-                            <div class="lg:hidden relative bg-white rounded-[5px] overflow-hidden w-full aspect-[290/181]">
-                                <img src={videoThumbnail} alt="Video thumbnail" class="w-full h-full object-cover" width="290" height="181" />
-                                <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                    <div class="w-[45px] h-[45px] bg-secondary-blue/80 backdrop-blur-[1.679px] rounded-full flex items-center justify-center cursor-pointer hover:bg-secondary-blue transition-colors">
-                                        <svg class="w-[27px] h-[27px] text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
-                                            <path d="M8 5v14l11-7z"/>
-                                        </svg>
-                                    </div>
-                                </div>
+                        <!-- Media for mobile ONLY -->
+                        {media && (
+                            <div class="lg:hidden relative rounded-[5px] overflow-hidden w-full aspect-[290/181]">
+                                {media.type === 'image' && (
+                                    <img src={media.src} alt={media.alt ?? ''} class="w-full h-full object-cover" width="290" height="181" />
+                                )}
+                                {media.type === 'video' && (
+                                    <video src={media.src} autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                                )}
                             </div>
                         )}
                     </div>
