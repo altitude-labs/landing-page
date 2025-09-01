@@ -19,24 +19,12 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
 ---
 
 <div class="feature-card-wrapper" data-expanded={isExpanded} data-media-src={media?.src} data-media-type={media?.type}>
-    <div class="feature-card-container relative rounded-[10px] w-full border border-transparent overflow-hidden bg-gradient-dark">
-        <!-- Pseudo-élément pour la bordure animée -->
-        
-        <!-- Arrière-plan pour l'état déplié - Optimisé GPU -->
-        <div class="expanded-background absolute inset-0 pointer-events-none opacity-0">
-            <!-- Dégradé du bleu vers bleu clair (en arrière-plan) -->
-            <div class="absolute inset-0 bg-gradient-to-b from-[#2A45A3]/20 via-[#2A45A3] to-[#4F6BCC] transform-gpu"></div>
-            <!-- Motif de lettres (par-dessus le dégradé) -->
-            <div class="absolute inset-0 opacity-100 transform-gpu">
-                <img src={backgroundLettersDesktop.src} alt="" class="w-full h-full object-cover" width="2151" height="1429" />
-            </div>
-            <!-- Effet ellipse optimisé - Remplacé par gradient -->
-            <div class="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 w-[834px] h-[286px] opacity-30 rounded-full transform-gpu"
-                 style="background: radial-gradient(ellipse 834px 286px at center, #1F2937 0%, transparent 70%);"></div>
-        </div>
+    <div class="feature-card-container relative rounded-[10px] w-full overflow-hidden bg-gradient-dark">
+        <!-- Simple expanded background -->
+        <div class="expanded-background absolute inset-0 pointer-events-none opacity-0 bg-secondary-blue/20"></div>
 
-        <!-- Grid container pour animation fluide -->
-        <div class="feature-card-grid grid grid-rows-[auto_0fr]">
+        <!-- Optimized grid container for mobile performance -->
+        <div class="feature-card-grid grid grid-rows-[auto_0fr] will-change-auto">
             <!-- Header -->
             <div class="feature-card-header flex items-center gap-[15px] p-5 cursor-pointer relative z-10">
                 <div class="w-6 h-6 flex-shrink-0">
@@ -46,25 +34,25 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
                     {title}
                 </h3>
             </div>
-            
-            <!-- Body - Grid item qui s'expand -->
+
+            <!-- Body -->
             <div class="feature-card-body overflow-hidden">
                 <div class="relative px-5 pb-5 pt-0">
-                    <div class="relative z-10 flex flex-col gap-5">
+                    <div class="flex flex-col gap-5">
                         {description && (
                             <p class="text-white/50 font-medium text-sm leading-[1.6] tracking-[-0.28px]">
                                 {description}
                             </p>
                         )}
-                        
+
                         <!-- Media for mobile ONLY -->
                         {media && (
-                            <div class="lg:hidden relative rounded-[5px] overflow-hidden w-full aspect-[290/181]">
+                            <div class="lg:hidden relative rounded-[5px] overflow-hidden w-full aspect-[290/181] media-container">
                                 {media.type === 'image' && (
-                                    <img src={media.src} alt={media.alt ?? ''} class="w-full h-full object-cover" width="290" height="181" />
+                                    <img src={media.src} alt={media.alt ?? ''} class="w-full h-full object-cover media-content" width="290" height="181" />
                                 )}
                                 {media.type === 'video' && (
-                                    <video src={media.src} autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                                    <video src={media.src} autoplay loop muted playsinline class="w-full h-full object-contain media-content"></video>
                                 )}
                             </div>
                         )}
@@ -74,133 +62,427 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
         </div>
     </div>
 </div>
+
 <style>
-    /* Pseudo-élément pour bordure animée - Optimisé GPU */
-    .feature-card-container::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: 10px;
-        border: 1px solid rgba(79, 115, 255, 0.5);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.2s ease-out;
+    /* Ultra-smooth transitions with optimized easing */
+    .feature-card-grid {
+        transition: grid-template-rows 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: grid-template-rows;
+    }
+
+    .expanded-background {
+        transition: opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         will-change: opacity;
-        transform: translateZ(0); /* Force GPU layer */
+        transform: translateZ(0);
     }
-    
-    .feature-card-container.active-feature::after {
-        opacity: 1;
+
+    /* Smooth border animation */
+    .feature-card-container {
+        border: 1px solid transparent;
+        transition: border-color 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: border-color;
+        transform: translateZ(0);
     }
-    
-    /* État expanded pour grid */
+
+    /* Smart will-change management to prevent GPU memory leaks */
+    .feature-card-wrapper[data-expanded="true"] .feature-card-grid,
+    .feature-card-wrapper[data-expanded="true"] .expanded-background,
+    .feature-card-wrapper[data-expanded="true"] .feature-card-container {
+        will-change: auto;
+    }
+
+    .feature-card-wrapper:not([data-expanded="true"]) .feature-card-grid,
+    .feature-card-wrapper:not([data-expanded="true"]) .expanded-background,
+    .feature-card-wrapper:not([data-expanded="true"]) .feature-card-container {
+        will-change: auto;
+    }
+
+    /* Mobile-first ultra-fast animations */
+    @media (max-width: 1024px) {
+        .feature-card-grid {
+            transition: grid-template-rows 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: grid-template-rows;
+        }
+
+        .expanded-background {
+            transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity;
+        }
+
+        .feature-card-container {
+            transition: border-color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: border-color;
+        }
+
+        /* Simplify content animations on mobile */
+        .feature-card-body {
+            transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity;
+        }
+
+        .feature-card-body > * {
+            transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity;
+        }
+
+        /* Disable complex media effects on mobile */
+        .media-content {
+            transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity;
+            transform: none !important;
+            filter: none !important;
+        }
+
+        /* Disable hover effects on touch */
+        .feature-card-header {
+            transition: none;
+            will-change: auto;
+        }
+
+        .feature-card-header:hover {
+            transform: none;
+        }
+    }
+
+    /* Expanded state with smooth transitions */
     .feature-card-wrapper[data-expanded="true"] .feature-card-grid {
         grid-template-rows: auto 1fr;
     }
-    
+
     .feature-card-wrapper[data-expanded="true"] .expanded-background {
         opacity: 1;
     }
 
-    .feature-card-grid {
-        grid-template-rows: auto 0fr;            /* état fermé */
-        transition: grid-template-rows .3s cubic-bezier(.4,0,.2,1);
+    .feature-card-wrapper[data-expanded="true"] .feature-card-container {
+        border-color: rgba(79, 115, 255, 0.5);
     }
-    .expanded-background {
-        transition: opacity .3s cubic-bezier(.4,0,.2,1);
+
+    /* Optimized content transitions */
+    .feature-card-body {
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: auto;
+    }
+
+    .feature-card-body > * {
+        min-height: 0;
+        transition: opacity 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         will-change: opacity;
-        contain: paint; /* limite la zone de repaint */
     }
-    .feature-card-body > * { 
-        overflow: hidden;
-        min-height: 0; /* important avec grid */
+
+    /* Smooth hover effects */
+    .feature-card-header {
+        transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform;
     }
+
+    .feature-card-header:hover {
+        transform: translateY(-1px);
+    }
+
+    /* Optimized media transitions */
+    .media-container {
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform, opacity;
+        transform: translateZ(0);
+    }
+
+    .media-content {
+        transition: opacity 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: opacity, transform, filter;
+        transform: translateZ(0);
+    }
+
+    /* Subtle loading animation for media */
+    .feature-card-body .media-content {
+        opacity: 0;
+        transform: scale(0.98) translateZ(0);
+        filter: blur(1px);
+    }
+
+    .feature-card-wrapper[data-expanded="true"] .feature-card-body .media-content {
+        opacity: 1;
+        transform: scale(1) translateZ(0);
+        filter: blur(0);
+    }
+
+    /* Smooth text fade-in */
+    .feature-card-body p {
+        transition: opacity 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                    transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: opacity, transform;
+        opacity: 0;
+        transform: translateY(8px) translateZ(0);
+    }
+
+    .feature-card-wrapper[data-expanded="true"] .feature-card-body p {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
+    }
+
     @media (prefers-reduced-motion: reduce) {
         .feature-card-grid,
         .expanded-background,
-        .feature-card-container::after { transition: none !important; }
+        .feature-card-container,
+        .feature-card-body,
+        .feature-card-body > *,
+        .feature-card-header {
+            transition: none !important;
+            will-change: auto !important;
+            transform: none !important;
+        }
+    }
+
+    /* Performance optimization for mobile */
+    @media (max-width: 1024px) {
+        .feature-card-grid {
+            transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .expanded-background {
+            transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Reduce motion for better mobile performance */
+        .media-content {
+            transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card-body p {
+            transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Disable hover effects on touch devices */
+        .feature-card-header:hover {
+            transform: none;
+        }
+    }
+
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+        .feature-card-header {
+            transition: none;
+            will-change: auto;
+        }
+
+        .feature-card-header:hover {
+            transform: none;
+        }
+
+        /* Ultra-fast animations for touch devices */
+        .feature-card-grid {
+            transition: grid-template-rows 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .expanded-background {
+            transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card-container {
+            transition: border-color 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Disable all complex effects on touch */
+        .media-content,
+        .feature-card-body > * {
+            transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity;
+            transform: none !important;
+            filter: none !important;
+        }
+
+        /* Optimize for touch interaction */
+        .feature-card-header {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+    }
+
+    /* Additional mobile performance optimizations */
+    @media (max-width: 768px) {
+        /* Reduce motion for very small screens */
+        .feature-card-grid {
+            transition: grid-template-rows 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .expanded-background {
+            transition: opacity 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Minimize GPU usage on low-end devices */
+        .feature-card-container,
+        .expanded-background,
+        .media-container {
+            transform: none !important;
+            will-change: auto;
+        }
+
+        /* Optimize for 60fps on mobile */
+        .will-change-auto {
+            will-change: auto !important;
+        }
+
+        .feature-card-grid {
+            contain: layout style paint;
+        }
     }
 </style>
+
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    // Performance monitoring
+    if (window.performance && window.performance.mark) {
+        window.performance.mark('feature-cards-init-start');
+    }
+
     const featureCards = document.querySelectorAll('.feature-card-wrapper');
 
-    const setCardState = (card, isExpanded) => {
-        const container = card.querySelector('.feature-card-container');
-        if (!container) return;
-        
-        // Simple toggle des classes - Les animations CSS font le reste
-        if (isExpanded) {
-            container.classList.add('active-feature');
+    // Ultra-fast state setter optimized for mobile
+    const setCardState = (card: Element, isExpanded: boolean) => {
+        // Use immediate execution for mobile, RAF for desktop
+        const isMobile = window.innerWidth < 1024;
+        if (isMobile) {
+            card.setAttribute('data-expanded', String(isExpanded));
         } else {
-            container.classList.remove('active-feature');
+            requestAnimationFrame(() => {
+                card.setAttribute('data-expanded', String(isExpanded));
+            });
         }
-        
-        card.setAttribute('data-expanded', String(isExpanded));
     };
 
-    // Configuration initiale
-    featureCards.forEach((card, index) => {
-        const header = card.querySelector('.feature-card-header');
-        if (!header) return;
-        
-        const isInitiallyExpanded = card.getAttribute('data-expanded') === 'true';
-        
-        // État initial selon le breakpoint
-        if (window.innerWidth >= 1024) {
-            // Desktop: respecter l'état initial
-            setCardState(card, isInitiallyExpanded);
-        } else {
-            // Mobile: toutes fermées initialement
-            setCardState(card, false);
-        }
+    // Ultra-optimized click handler with minimal DOM operations
+    const handleCardClick = (card: Element, cardIndex: number, isDesktop: boolean) => {
+        return (event: Event) => {
+            // Prevent multiple rapid clicks
+            if (card.hasAttribute('data-animating')) return;
+            card.setAttribute('data-animating', 'true');
 
-        // Gestion des clics
-        header.addEventListener('click', () => {
             const isCurrentlyExpanded = card.getAttribute('data-expanded') === 'true';
-            
-            if (window.innerWidth >= 1024) {
-                // Desktop: une seule carte ouverte à la fois
+
+            if (isDesktop) {
+                // Desktop: ultra-fast single card management
                 if (!isCurrentlyExpanded) {
-                    featureCards.forEach(otherCard => {
-                        setCardState(otherCard, otherCard === card);
-                    });
+                    // Only close the currently expanded card, don't loop through all
+                    const currentlyExpanded = document.querySelector('.feature-card-wrapper[data-expanded="true"]:not([data-animating])');
+                    if (currentlyExpanded && currentlyExpanded !== card) {
+                        setCardState(currentlyExpanded, false);
+                    }
+                    setCardState(card, true);
                 }
             } else {
-                // Mobile: accordion classique
+                // Mobile: optimized accordion - close others only if needed
                 if (!isCurrentlyExpanded) {
-                    // Fermer les autres cartes
-                    featureCards.forEach(otherCard => {
-                        if (otherCard !== card) {
-                            setCardState(otherCard, false);
+                    // Use more efficient selector for expanded cards
+                    const expandedCards = document.querySelectorAll('.feature-card-wrapper[data-expanded="true"]:not([data-animating])');
+                    expandedCards.forEach(expandedCard => {
+                        if (expandedCard !== card) {
+                            setCardState(expandedCard, false);
                         }
                     });
                 }
                 setCardState(card, !isCurrentlyExpanded);
             }
-        });
+
+            // Optimized animation duration
+            const animationDuration = window.innerWidth >= 1024 ? 450 : 300;
+            setTimeout(() => {
+                card.removeAttribute('data-animating');
+            }, animationDuration);
+        };
+    };
+
+    // Setup cards with optimized event listeners
+    featureCards.forEach((card, index) => {
+        const header = card.querySelector('.feature-card-header');
+        if (!header) return;
+
+        const isInitiallyExpanded = card.getAttribute('data-expanded') === 'true';
+        const isDesktop = window.innerWidth >= 1024;
+
+        // Set initial state
+        setCardState(card, isDesktop ? isInitiallyExpanded : false);
+
+        // Add click handler with current breakpoint context
+        header.addEventListener('click', handleCardClick(card, index, isDesktop));
     });
 
-    // Gestion du resize pour ajuster les états
-    let resizeTimeout;
+    // Optimized resize handler with better performance
+    let resizeTimeout: any;
+    let currentBreakpoint = window.innerWidth >= 1024;
+
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            const isDesktop = window.innerWidth >= 1024;
-            
-            featureCards.forEach((card, index) => {
-                const isCurrentlyExpanded = card.getAttribute('data-expanded') === 'true';
-                
-                if (isDesktop) {
-                    // Desktop: garder une carte ouverte
-                    const shouldBeExpanded = index === 0 && !Array.from(featureCards).some(c => c.getAttribute('data-expanded') === 'true');
-                    setCardState(card, shouldBeExpanded || isCurrentlyExpanded);
-                } else {
-                    // Mobile: fermer toutes les cartes
-                    setCardState(card, false);
-                }
-            });
-        }, 100);
+            const newBreakpoint = window.innerWidth >= 1024;
+
+            // Only update if breakpoint actually changed
+            if (newBreakpoint !== currentBreakpoint) {
+                const previousBreakpoint = currentBreakpoint;
+                currentBreakpoint = newBreakpoint;
+
+                // Ultra-efficient resize handling - only update changed cards
+                featureCards.forEach((card, index) => {
+                    const header = card.querySelector('.feature-card-header');
+                    if (!header) return;
+
+                    const isCurrentlyExpanded = card.getAttribute('data-expanded') === 'true';
+
+                    if (newBreakpoint) {
+                        // Switching to desktop - ensure only one card is expanded
+                        if (index === 0 && !isCurrentlyExpanded) {
+                            // Check if any card is already expanded
+                            const hasExpandedCard = Array.from(featureCards).some(c => c.getAttribute('data-expanded') === 'true');
+                            if (!hasExpandedCard) {
+                                setCardState(card, true);
+                            }
+                        }
+                    } else {
+                        // Switching to mobile - close all cards
+                        if (isCurrentlyExpanded) {
+                            setCardState(card, false);
+                        }
+                    }
+
+                    // Always replace listeners on breakpoint change for consistency
+                    header.replaceWith(header.cloneNode(true));
+
+                    const newHeader = card.querySelector('.feature-card-header');
+                    if (newHeader) {
+                        // Add new handler with updated breakpoint
+                        newHeader.addEventListener('click', handleCardClick(card, index, newBreakpoint));
+                    }
+                });
+            }
+        }, 150); // Slightly longer debounce for better performance
     });
+
+    // Cleanup on page unload and visibility change
+    window.addEventListener('beforeunload', () => {
+        featureCards.forEach(card => {
+            card.removeAttribute('data-animating');
+        });
+    });
+
+    // Pause animations when page is not visible to save resources
+    document.addEventListener('visibilitychange', () => {
+        const isVisible = !document.hidden;
+        if (!isVisible) {
+            // Pause all animations when tab is not visible
+            featureCards.forEach(card => {
+                card.style.animationPlayState = 'paused';
+            });
+        } else {
+            // Resume animations when tab becomes visible
+            featureCards.forEach(card => {
+                card.style.animationPlayState = 'running';
+            });
+        }
+    });
+
+    // Performance monitoring for debugging
+    if (window.performance && window.performance.mark) {
+        window.performance.mark('feature-cards-init-end');
+    }
 });
 </script>

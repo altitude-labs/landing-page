@@ -5,7 +5,7 @@ import backgroundLettersDesktop from '../assets/background-letters-desk.svg';
 
 // Media imports
 import liveCharts from "../assets/LIVE_CHARTS.png";
-import scanFilter from "../assets/SCAN_AND_FILTER.png";
+import scanFilter from "../assets/scan_and_filter.mp4";
 import organizeTokens from "../assets/Organize_Part.mp4";
 import portfolioPage from "../assets/PORTFOLIO.png";
 import smartOrderRouting from "../assets/SMART_ORDER_ROUTING.png";
@@ -23,13 +23,13 @@ const routingIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53M
   <div class="absolute inset-0">
     <!-- Pattern background -->
     <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[2151px] h-[1429px]">
-      <img 
-        src={backgroundLettersDesktop.src} 
-        alt="" 
+      <img
+        src={backgroundLettersDesktop.src}
+        alt=""
         class="w-full h-full object-cover"
       />
     </div>
-    
+
     <!-- Effets de lueur -->
     <div class="absolute -left-[386px] -top-[932px] w-[2692px] h-[1644px] bg-primary-blue opacity-5 blur-[200px]"></div>
     <div class="absolute left-1/2 -top-[256px] transform -translate-x-1/2 w-[944px] h-[944px] bg-secondary-blue opacity-10 blur-[150px]"></div>
@@ -40,13 +40,13 @@ const routingIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53M
     <div class="flex flex-col items-center text-center mb-12 md:mb-20">
       <!-- Section Badge -->
       <SectionBadge text="Features" />
-      
+
       <!-- Titre principal -->
       <h2 class="text-white font-bold text-2xl md:text-4xl lg:text-5xl leading-tight mb-4 max-w-2xl mx-auto">
         Everything you need.<br/>
         Nothing you don't.
       </h2>
-      
+
       <!-- Sous-titre -->
       <p class="text-light-blue font-medium text-base md:text-lg leading-relaxed max-w-md mx-auto tracking-tight">
         Fast execution, clear data, and powerful tools — without the noise.
@@ -54,72 +54,72 @@ const routingIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53M
     </div>
 
     <!-- Features Grid -->
-    <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-start">
+    <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
       <div class="max-w-md mx-auto md:max-w-2xl lg:max-w-none">
         <!-- Ligne de séparation -->
         <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-5"></div>
-        
+
         <div class="flex flex-col gap-5" id="features-list">
           <!-- Feature 1 - Expanded by default on desktop -->
-          <FeatureCard 
+          <FeatureCard
             icon={chartIcon}
             title="Live charts, always on"
             description="See your trades evolve in real time. No refreshes. No lag. Just raw market data, updating live."
             media={{ type: 'image', src: liveCharts.src }}
             isExpanded={true}
           />
-          
+
           <!-- Feature 2 -->
-          <FeatureCard 
+          <FeatureCard
             icon={filterIcon}
             title="Scan & filter trending tokens"
             description="Never miss a move. Quickly spot tokens on the rise and filter by volume, trend, or market cap."
-            media={{ type: 'image', src: scanFilter.src }}
+            media={{ type: 'video', src: scanFilter }}
           />
-          
-          <!-- Feature 4 -->
-          <FeatureCard 
+
+          <!-- Feature 3 -->
+          <FeatureCard
             icon={organizeIcon}
             title="Organize your tokens"
             description="Stay on top of your investments. Sort, track, and manage your assets all from one dashboard."
             media={{ type: 'video', src: organizeTokens }}
           />
-          
-          <!-- Feature 5 -->
-          <FeatureCard 
+
+          <!-- Feature 4 -->
+          <FeatureCard
             icon={portfolioIcon}
             title="A complete portfolio page"
             description="Your portfolio at a glance. See performance, allocation, and history in a clear, intuitive view."
             media={{ type: 'image', src: portfolioPage.src }}
           />
-          
-          <!-- Feature 6 -->
-          <FeatureCard 
+
+          <!-- Feature 5 -->
+          <FeatureCard
             icon={routingIcon}
             title="Ultra-fast smart order routing"
             description="Lightning-fast execution, optimal prices. Our tech routes every trade for the best available price, instantly."
             media={{ type: 'image', src: smartOrderRouting.src }}
           />
         </div>
-        
+
         <!-- Ligne de séparation finale -->
         <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mt-5"></div>
       </div>
 
-      <!-- Right side - Video/GIF display for desktop -->
-      <div class="hidden lg:block sticky top-28">
-        <div class="relative aspect-square bg-secondary-blue rounded-[10px] overflow-hidden">
-           <div class="absolute inset-0 bg-gradient-dark rounded-[10px]"></div>
-          <img id="feature-image-display" 
-               src={liveCharts.src} 
-               alt="Feature preview" 
-               width="500" 
-               height="500"
-               class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 will-change-opacity"
+      <!-- Right side - Media display for desktop -->
+      <div class="hidden lg:block">
+        <div class="relative aspect-[4/3] bg-secondary-blue rounded-[12px] overflow-hidden media-display-container shadow-2xl">
+          <div class="absolute inset-0 bg-gradient-dark rounded-[12px]"></div>
+          <img id="feature-image-display"
+               src={liveCharts.src}
+               alt="Feature preview"
+               width="600"
+               height="450"
+               class="absolute inset-0 w-full h-full object-cover media-display-content transition-all duration-400 ease-out"
                style="transform: translateZ(0);">
           <video id="feature-video-display"
                  autoplay loop muted playsinline
-                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 will-change-opacity opacity-0"
+                 class="absolute inset-0 w-full h-full object-cover media-display-content transition-all duration-400 ease-out opacity-0"
                  style="transform: translateZ(0);"></video>
         </div>
       </div>
@@ -129,71 +129,86 @@ const routingIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53M
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.innerWidth < 1024) return; // lg breakpoint
+  // Only run desktop media display logic on desktop
+  if (window.innerWidth < 1024) return;
 
-    const featuresList = document.getElementById('features-list');
-    if (!featuresList) return;
-    
-    const featureCards = featuresList.querySelectorAll('.feature-card-wrapper');
-    const imageDisplay = document.getElementById('feature-image-display') as HTMLImageElement | null;
-    const videoDisplay = document.getElementById('feature-video-display') as HTMLVideoElement | null;
-    if (!imageDisplay || !videoDisplay) return;
+  const featuresList = document.getElementById('features-list');
+  if (!featuresList) return;
 
-    function updateMediaDisplay(activeCard: Element) {
-        const mediaSrc = (activeCard as HTMLElement).dataset.mediaSrc;
-        const mediaType = (activeCard as HTMLElement).dataset.mediaType;
+  const featureCards = featuresList.querySelectorAll('.feature-card-wrapper');
+  const imageDisplay = document.getElementById('feature-image-display') as HTMLImageElement | null;
+  const videoDisplay = document.getElementById('feature-video-display') as HTMLVideoElement | null;
 
-        if (!mediaSrc || !mediaType) return;
+  if (!imageDisplay || !videoDisplay) return;
 
-        const isImage = mediaType === 'image';
-        
-        // Fade out both elements first
-        imageDisplay.style.opacity = '0';
-        videoDisplay.style.opacity = '0';
-        
-        setTimeout(() => {
-            if (isImage) {
-                if (imageDisplay.src !== mediaSrc) {
-                    imageDisplay.src = mediaSrc;
-                }
-                imageDisplay.style.opacity = '1';
-                videoDisplay.pause();
-                videoDisplay.currentTime = 0;
-            } else {
-                if (videoDisplay.src !== mediaSrc) {
-                    videoDisplay.src = mediaSrc;
-                }
-                videoDisplay.style.opacity = '1';
-                videoDisplay.play();
-            }
-        }, 150); // Match this with transition duration
-    }
+  // Ultra-smooth media switching with RAF
+  const updateMediaDisplay = (activeCard: Element) => {
+    const mediaSrc = (activeCard as HTMLElement).dataset.mediaSrc;
+    const mediaType = (activeCard as HTMLElement).dataset.mediaType;
 
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'data-expanded') {
-                const card = mutation.target as Element;
-                const isExpanded = card.getAttribute('data-expanded') === 'true';
-                
-                if (isExpanded) {
-                    updateMediaDisplay(card);
-                }
-            }
-        });
-    });
+    if (!mediaSrc || !mediaType) return;
 
-    featureCards.forEach(card => {
-        observer.observe(card, { attributes: true, attributeFilter: ['data-expanded'] });
-        
-        // Initialiser l'image pour la carte déjà expandée
-        if (card.getAttribute('data-expanded') === 'true') {
-            updateMediaDisplay(card);
+    const isImage = mediaType === 'image';
+
+    // Smooth fade out both elements
+    imageDisplay.style.opacity = '0';
+    videoDisplay.style.opacity = '0';
+
+    // Use RAF for smooth transitions
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        if (isImage) {
+          if (imageDisplay.src !== mediaSrc) {
+            imageDisplay.src = mediaSrc;
+          }
+          requestAnimationFrame(() => {
+            imageDisplay.style.opacity = '1';
+            videoDisplay.pause();
+            videoDisplay.currentTime = 0;
+          });
+        } else {
+          if (videoDisplay.src !== mediaSrc) {
+            videoDisplay.src = mediaSrc;
+          }
+          requestAnimationFrame(() => {
+            videoDisplay.style.opacity = '1';
+            videoDisplay.play().catch(() => {
+              // Handle play promise rejection
+            });
+          });
         }
+      }, 150); // Match transition duration
     });
+  };
 
-    // Cleanup lors du déchargement
-    window.addEventListener('beforeunload', () => {
-        observer.disconnect();
+  // Optimized mutation observer for desktop media sync
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-expanded') {
+        const card = mutation.target as Element;
+        const isExpanded = card.getAttribute('data-expanded') === 'true';
+
+        if (isExpanded) {
+          updateMediaDisplay(card);
+        }
+      }
     });
+  });
+
+  // Setup observers and initial state
+  featureCards.forEach(card => {
+    observer.observe(card, { attributes: true, attributeFilter: ['data-expanded'] });
+
+    // Initialize media for already expanded card
+    if (card.getAttribute('data-expanded') === 'true') {
+      updateMediaDisplay(card);
+    }
+  });
+
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    observer.disconnect();
+  });
 });
 </script>
+
