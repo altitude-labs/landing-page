@@ -26,7 +26,7 @@ bun-debug.log*
 .vscode/
 
 # OS-specific
-Thumbs.db
+Thumbs.db   # Windows
 
 # TypeScript build output
 *.tsbuildinfo
