@@ -1,0 +1,229 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import "../styles/global.css";
+---
+
+<Layout>
+  <div class="relative bg-primary-dark min-h-screen">
+    <Header />
+    
+    <!-- Background effects -->
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-gradient-to-b from-[#020921] via-[#030b2a] to-[#050F2F]"></div>
+      <div class="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-primary-blue opacity-20 blur-[200px] rounded-full"></div>
+      <div class="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] bg-secondary-blue opacity-15 blur-[150px] rounded-full"></div>
+    </div>
+    
+    <main class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="bg-card-dark/30 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/10 shadow-2xl">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-12 text-center">Terms of Service</h1>
+        
+        <div class="space-y-8 text-gray-300">
+          <section class="border-l-4 border-primary-blue pl-6 py-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center">
+              <span class="text-primary-blue mr-3">01.</span>
+              Introduction
+            </h2>
+            <p class="text-gray-300 leading-relaxed text-lg">
+              Welcome to Altitude ("Service"), operated by Altitude Labs Limited ("we," "us," or "our"). By accessing or using reachaltitude.xyz and its associated services, you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these Terms, you may not access the Service.
+            </p>
+          </section>
+
+          <section class="border-l-4 border-primary-blue pl-6 py-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center">
+              <span class="text-primary-blue mr-3">02.</span>
+              Services Description
+            </h2>
+            <p class="text-gray-300 leading-relaxed text-lg mb-6">
+              Altitude provides blockchain infrastructure services, including but not limited to:
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div class="flex items-center text-gray-300">
+                <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 flex-shrink-0"></span>
+                Private RPC node access
+              </div>
+              <div class="flex items-center text-gray-300">
+                <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 flex-shrink-0"></span>
+                Copy trading bots
+              </div>
+              <div class="flex items-center text-gray-300">
+                <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 flex-shrink-0"></span>
+                Validator services
+              </div>
+              <div class="flex items-center text-gray-300">
+                <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 flex-shrink-0"></span>
+                Custom blockchain tooling
+              </div>
+              <div class="flex items-center text-gray-300">
+                <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 flex-shrink-0"></span>
+                Enhanced RPC services
+              </div>
+              <div class="flex items-center text-gray-300">
+                <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 flex-shrink-0"></span>
+                API access for blockchain interactions
+              </div>
+            </div>
+          </section>
+
+          <section class="border-l-4 border-primary-blue pl-6 py-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-6 flex items-center">
+              <span class="text-primary-blue mr-3">03.</span>
+              User Responsibilities
+            </h2>
+            
+            <div class="space-y-8">
+              <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+                <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                  <span class="text-primary-blue mr-2">3.1</span>
+                  Account Registration
+                </h3>
+                <p class="text-gray-300 leading-relaxed text-lg">
+                  To use our infrastructure services (API, RPC, etc.), you need to register with an email address. We may request additional information for invoicing purposes, but this information is only used for business operations and not for any other purposes. For our trading app and bots, authentication is available via Telegram account or Web3 wallet connection.
+                </p>
+              </div>
+
+              <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+                <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                  <span class="text-primary-blue mr-2">3.2</span>
+                  API Usage
+                </h3>
+                <p class="text-gray-300 leading-relaxed text-lg mb-4">Users are responsible for:</p>
+                <div class="space-y-2">
+                  <div class="flex items-start text-gray-300">
+                    <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                    <span>Securing their API keys and access credentials</span>
+                  </div>
+                  <div class="flex items-start text-gray-300">
+                    <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                    <span>Using the Service in compliance with applicable laws</span>
+                  </div>
+                  <div class="flex items-start text-gray-300">
+                    <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                    <span>Not attempting to breach, scan, or test the vulnerability of our systems</span>
+                  </div>
+                  <div class="flex items-start text-gray-300">
+                    <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                    <span>Not interfering with service to any other users</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+                <h3 class="text-xl font-semibold text-white mb-4 flex items-center">
+                  <span class="text-primary-blue mr-2">3.3</span>
+                  Rate Limits and Fair Usage
+                </h3>
+                <p class="text-gray-300 leading-relaxed text-lg">
+                  Our service plans come with predefined rate limits. We expect fair usage of our services, which means not sharing access with unauthorized parties and not attempting to circumvent established limits. We reserve the right to implement rate limits on API calls and other services to ensure fair usage across our platform.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section class="border-l-4 border-primary-blue pl-6 py-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center">
+              <span class="text-primary-blue mr-3">04.</span>
+              Service Availability and Modifications
+            </h2>
+            <p class="text-gray-300 leading-relaxed text-lg mb-6">
+              We strive to provide uninterrupted service but do not guarantee that the Service will be available at all times. We reserve the right to:
+            </p>
+            <div class="space-y-3">
+              <div class="flex items-start text-gray-300">
+                <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>Modify, suspend, or discontinue any part of the Service</span>
+              </div>
+              <div class="flex items-start text-gray-300">
+                <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>Implement maintenance windows that may temporarily affect availability</span>
+              </div>
+              <div class="flex items-start text-gray-300">
+                <span class="w-2 h-2 bg-primary-blue rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                <span>Update these Terms at any time by posting the amended terms on our website</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="border-l-4 border-primary-blue pl-6 py-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center">
+              <span class="text-primary-blue mr-3">05.</span>
+              Intellectual Property
+            </h2>
+            <p class="text-gray-300 leading-relaxed text-lg">
+              All content, features, and functionality of the Service, including but not limited to code, design, text, and logos, are owned by Altitude Labs Limited and are protected by international copyright, trademark, and other intellectual property laws.
+            </p>
+          </section>
+
+          <section class="border-l-4 border-primary-blue pl-6 py-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center">
+              <span class="text-primary-blue mr-3">06.</span>
+              Limitation of Liability
+            </h2>
+            <p class="text-gray-300 leading-relaxed text-lg">
+              To the maximum extent permitted by law, we shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the Service.
+            </p>
+          </section>
+
+          <section class="border-l-4 border-primary-blue pl-6 py-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center">
+              <span class="text-primary-blue mr-3">07.</span>
+              Disclaimer of Warranties
+            </h2>
+            <p class="text-gray-300 leading-relaxed text-lg">
+              The Service is provided on an "as is" and "as available" basis without any warranties of any kind, either express or implied.
+            </p>
+          </section>
+
+          <section class="border-l-4 border-primary-blue pl-6 py-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center">
+              <span class="text-primary-blue mr-3">08.</span>
+              Indemnification
+            </h2>
+            <p class="text-gray-300 leading-relaxed text-lg">
+              You agree to defend, indemnify, and hold harmless Altitude Labs Limited and its employees, contractors, agents, and service providers from any claims, liabilities, damages, losses, and expenses arising from your use of the Service.
+            </p>
+          </section>
+
+          <section class="border-l-4 border-primary-blue pl-6 py-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center">
+              <span class="text-primary-blue mr-3">09.</span>
+              Governing Law
+            </h2>
+            <p class="text-gray-300 leading-relaxed text-lg">
+              These Terms shall be governed by and construed in accordance with the laws of HONG KONG, without regard to its conflict of law provisions.
+            </p>
+          </section>
+
+          <section class="border-l-4 border-primary-blue pl-6 py-4">
+            <h2 class="text-2xl md:text-3xl font-bold text-white mb-4 flex items-center">
+              <span class="text-primary-blue mr-3">10.</span>
+              Contact Information
+            </h2>
+            <p class="text-gray-300 leading-relaxed text-lg mb-6">
+              For questions about these Terms, please contact us here.
+            </p>
+            <div class="bg-white/5 rounded-xl p-6 border border-white/10">
+              <p class="font-semibold text-white mb-4">Our address:</p>
+              <div class="text-gray-300 space-y-1">
+                <p class="font-medium">Altitude Labs Limited</p>
+                <p>RM4, 16/F HO KING COMM CTR</p>
+                <p>2-16 FAYUEN ST MONGKOK KL</p>
+                <p>HONG KONG</p>
+              </div>
+            </div>
+          </section>
+
+          <div class="mt-12 pt-8 border-t border-white/20 text-center">
+            <p class="text-sm text-gray-400 bg-white/5 rounded-lg py-3 px-6 inline-block">
+              Last updated: March 20, 2024
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <Footer />
+  </div>
+</Layout>
