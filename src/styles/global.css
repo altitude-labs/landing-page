@@ -41,73 +41,80 @@
   transform: translateZ(0);
 }
 
-/* Mobile-first performance optimizations */
+/* Optimisations performances mobile équilibrées */
 @media (max-width: 1024px) {
-  .feature-card-grid {
-    transition: grid-template-rows 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: grid-template-rows;
-  }
-
-  .expanded-background {
-    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: opacity;
-  }
-
-  /* Disable complex effects on mobile for better performance */
-  .media-display-content {
-    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: opacity;
-    transform: none !important;
-    filter: none !important;
-  }
-
-  .media-display-content[style*="opacity: 1"] {
-    opacity: 1;
-    transform: none !important;
-    filter: none !important;
-  }
-
-  /* Optimize for scroll performance */
-  .feature-card-wrapper {
-    contain: layout style paint;
+  /* Containers optimisés pour les cartes expandables */
+  .feature-card, .faq-card {
+    contain: layout style;
     transform: translateZ(0);
   }
-
-  /* Reduce GPU usage for better battery life */
-  .feature-card-container {
+  
+  /* Wrappers pour isolation des animations */
+  .feature-card-wrapper, .faq-card-wrapper {
+    contain: layout style;
+    transform: translateZ(0);
+  }
+  
+  /* Optimisation vidéos sur mobile */
+  video {
+    transform: translateZ(0);
     will-change: auto;
   }
-
-  .feature-card-grid {
+  
+  /* Optimisation des images et effets décoratifs */
+  .media-display-content {
+    transition: opacity 0.2s ease-out;
     will-change: auto;
   }
 }
 
-/* Ultra-smooth desktop media display */
-.media-display-container {
-  will-change: auto;
-  transform: translateZ(0);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25),
-              0 0 0 1px rgba(255, 255, 255, 0.05);
+/* Desktop media display optimisé */
+@media (min-width: 1025px) {
+  .media-display-container {
+    will-change: auto;
+    transform: translateZ(0);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+  
+  .media-display-content {
+    transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform, filter;
+    transform: translateZ(0);
+  }
+  
+  /* Animation de chargement subtile pour desktop seulement */
+  .media-display-content {
+    opacity: 0;
+    transform: scale(0.96) translateZ(0);
+    filter: blur(2px) brightness(0.9);
+  }
+  
+  .media-display-content[style*="opacity: 1"] {
+    opacity: 1;
+    transform: scale(1) translateZ(0);
+    filter: blur(0) brightness(1);
+  }
 }
 
-.media-display-content {
-  transition: opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-              filter 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  will-change: opacity, transform, filter;
-  transform: translateZ(0);
+/* Optimisations globales pour toutes les plateformes */
+* {
+  /* Améliore le rendu des polices */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle loading animation for media display */
-.media-display-content {
-  opacity: 0;
-  transform: scale(0.96) translateZ(0);
-  filter: blur(2px) brightness(0.9);
+/* Optimisation images pour performance */
+img {
+  image-rendering: -webkit-optimize-contrast;
 }
 
-.media-display-content[style*="opacity: 1"] {
-  opacity: 1;
-  transform: scale(1) translateZ(0);
-  filter: blur(0) brightness(1);
+/* Optimisation vidéos */
+video {
+  object-fit: cover;
+  image-rendering: -webkit-optimize-contrast;
 }
+
+/* Optimisations sans casser l'apparence */

@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import logo from '../assets/logo.svg';
 ---
 
@@ -7,8 +8,8 @@ import logo from '../assets/logo.svg';
     <div class="flex items-center justify-between h-16 md:h-20">
       <!-- Logo and Title -->
       <div class="flex-1 flex-shrink-0 flex items-center gap-3">
-        <img 
-          src={logo.src} 
+        <Image 
+          src={logo} 
           alt="Logo Altitude" 
           width="32" 
           height="32"

@@ -1,6 +1,4 @@
 ---
-import backgroundLettersDesktop from '../../assets/background-letters-desk.svg';
-
 export interface Props {
   question: string;
   answer: string;
@@ -10,113 +8,177 @@ export interface Props {
 const { question, answer, isExpanded = false } = Astro.props;
 ---
 
-<div class="faq-card-wrapper" data-expanded={isExpanded}>
+<div class="faq-card" data-expanded={isExpanded}>
     <div class="faq-card-container relative rounded-[10px] w-full border border-transparent overflow-hidden bg-gradient-dark">
-        <!-- Expanded background -->
-        <div class="expanded-background absolute inset-0 pointer-events-none opacity-0">
-            <div class="absolute inset-0 bg-secondary-blue"></div>
-            <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[777px] h-[517px] opacity-10">
-                <img src={backgroundLettersDesktop.src} alt="" class="w-full h-full object-cover" />
+        <!-- Header -->
+        <div class="faq-card-header flex items-center justify-between gap-[15px] p-[30px] cursor-pointer">
+            <h3 class="text-white font-normal text-lg leading-[1.5] tracking-[-0.36px] flex-1">
+                {question}
+            </h3>
+            <div class="icon-container w-[18px] h-[18px] flex-shrink-0 flex items-center justify-center relative">
+                <!-- Plus Icon -->
+                <svg class="icon-plus absolute w-full h-full text-white transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                </svg>
+                <!-- Minus Icon -->
+                <svg class="icon-minus absolute w-full h-full text-white opacity-0 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
+                </svg>
             </div>
-            <div class="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2 w-[834px] h-[286px] bg-primary-dark opacity-30 blur-[150px] rounded-full"></div>
         </div>
 
-        <!-- Grid for animation -->
-        <div class="faq-card-grid grid grid-rows-[auto_0fr]">
-            <!-- Header -->
-            <div class="faq-card-header flex items-center justify-between gap-[15px] p-[30px] cursor-pointer relative z-10">
-                <h3 class="text-white font-normal text-lg leading-[1.5] tracking-[-0.36px] flex-1">
-                    {question}
-                </h3>
-                <div class="icon-container w-[18px] h-[18px] flex-shrink-0 flex items-center justify-center relative">
-                    <!-- Plus Icon -->
-                    <svg class="icon-plus absolute w-full h-full text-white transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
-                    </svg>
-                    <!-- Minus Icon -->
-                    <svg class="icon-minus absolute w-full h-full text-white opacity-0 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 12H6" />
-                    </svg>
-                </div>
-            </div>
-
-            <!-- Body (expandable) -->
-            <div class="faq-card-body overflow-hidden">
-                <div class="relative px-[30px] pb-[30px] pt-0">
-                    <p class="text-white/50 font-normal text-sm leading-[1.5] tracking-[-0.26px]">
-                        {answer}
-                    </p>
-                </div>
+        <!-- Body (expandable) -->
+        <div class="faq-card-body">
+            <div class="px-[30px] pb-[30px]">
+                <p class="text-white/50 font-normal text-sm leading-[1.5] tracking-[-0.26px]">
+                    {answer}
+                </p>
             </div>
         </div>
     </div>
 </div>
 
 <style>
-    .faq-card-grid {
-        transition: grid-template-rows 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .expanded-background {
-        transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Animations ultra-optimisées avec transform uniquement - pas de max-height */
+    .faq-card {
+        overflow: hidden;
+        contain: layout style paint;
     }
 
-    .faq-card-wrapper[data-expanded="true"] .faq-card-grid {
-        grid-template-rows: auto 1fr;
+    .faq-card-container {
+        transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        contain: layout style;
+        transform: translateZ(0);
     }
-    .faq-card-wrapper[data-expanded="true"] .expanded-background {
+
+    .faq-card-header:hover {
+        cursor: pointer;
+    }
+
+    /* Container du body avec position relative pour contenir l'absolute */
+    .faq-card-body {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: auto;
+        contain: layout style;
+    }
+
+    /* Contenu caché par défaut avec position absolute */
+    .faq-card-body > div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform, opacity;
+    }
+
+    /* État étendu - contenu visible */
+    .faq-card[data-expanded="true"] .faq-card-body > div {
+        position: static;
         opacity: 1;
+        transform: translateY(0);
     }
 
-    /* Icon transition */
-    .faq-card-wrapper[data-expanded="true"] .icon-plus {
+    .faq-card[data-expanded="true"] .faq-card-container {
+        border-color: rgba(79, 115, 255, 0.3);
+    }
+
+    /* Transitions des icônes optimisées */
+    .icon-plus, .icon-minus {
+        transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: opacity;
+    }
+
+    .faq-card[data-expanded="true"] .icon-plus {
         opacity: 0;
     }
-    .faq-card-wrapper[data-expanded="true"] .icon-minus {
+    .faq-card[data-expanded="true"] .icon-minus {
         opacity: 1;
     }
 
-    .faq-card-body > * {
-        min-height: 0;
+    /* Optimisations spécifiques mobile - transitions plus rapides */
+    @media (max-width: 1024px) {
+        .faq-card-body > div {
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Conteneur ultra-optimisé pour mobile */
+        .faq-card-container {
+            contain: layout style paint;
+            content-visibility: auto;
+        }
+
+        .faq-card {
+            contain: layout style paint;
+            content-visibility: auto;
+        }
+
+        /* Transitions plus rapides sur mobile */
+        .icon-plus, .icon-minus {
+            transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
     }
 
-     @media (prefers-reduced-motion: reduce) {
-        .faq-card-grid,
-        .expanded-background,
+    /* Gestion optimale de will-change */
+    .faq-card-body > div {
+        will-change: auto;
+    }
+
+    .faq-card[data-expanded="true"] .faq-card-body > div {
+        will-change: transform, opacity;
+    }
+
+    /* Respecter les préférences d'accessibilité */
+    @media (prefers-reduced-motion: reduce) {
+        .faq-card-container,
+        .faq-card-body,
+        .faq-card-body > div,
         .icon-plus,
-        .icon-minus { 
-            transition: none !important; 
+        .icon-minus {
+            transition: none !important;
+        }
+
+        .faq-card[data-expanded="true"] .faq-card-body > div {
+            position: static;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-card:not([data-expanded="true"]) .faq-card-body > div {
+            position: absolute;
+            opacity: 0;
+            transform: translateY(-20px);
         }
     }
 </style>
 
 <script>
+// Animation simple pour FAQ basée sur l'exemple fourni
 document.addEventListener('DOMContentLoaded', () => {
-    const faqCards = document.querySelectorAll('.faq-card-wrapper');
-
-    const setCardState = (card, isExpanded) => {
-        card.setAttribute('data-expanded', String(isExpanded));
-    };
+    const faqCards = document.querySelectorAll('.faq-card');
 
     faqCards.forEach(card => {
         const header = card.querySelector('.faq-card-header');
         if (!header) return;
 
-        // Set initial state from data attribute
-        const isInitiallyExpanded = card.getAttribute('data-expanded') === 'true';
-        setCardState(card, isInitiallyExpanded);
-
         header.addEventListener('click', () => {
             const isCurrentlyExpanded = card.getAttribute('data-expanded') === 'true';
-
-            // Close all other cards
+            
+            // Fermer toutes les autres cartes (comportement accordion)
             faqCards.forEach(otherCard => {
                 if (otherCard !== card) {
-                    setCardState(otherCard, false);
+                    otherCard.setAttribute('data-expanded', 'false');
                 }
             });
 
-            // Toggle the clicked card
-            setCardState(card, !isCurrentlyExpanded);
+            // Toggle la carte cliquée
+            card.setAttribute('data-expanded', String(!isCurrentlyExpanded));
         });
     });
 });
