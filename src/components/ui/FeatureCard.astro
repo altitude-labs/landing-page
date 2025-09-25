@@ -168,6 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         header.addEventListener('click', () => {
             const isCurrentlyExpanded = card.getAttribute('data-expanded') === 'true';
+            const expandedCardsCount = Array.from(featureCards).filter(otherCard => otherCard.getAttribute('data-expanded') === 'true').length;
+
+            if (isCurrentlyExpanded && expandedCardsCount === 1) {
+                return;
+            }
             
             // Fermer toutes les autres cartes (comportement accordion)
             featureCards.forEach(otherCard => {
@@ -180,5 +185,9 @@ document.addEventListener('DOMContentLoaded', () => {
             card.setAttribute('data-expanded', String(!isCurrentlyExpanded));
         });
     });
+
+    if (!Array.from(featureCards).some(card => card.getAttribute('data-expanded') === 'true')) {
+        featureCards[0]?.setAttribute('data-expanded', 'true');
+    }
 });
 </script>
