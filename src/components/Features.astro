@@ -6,7 +6,7 @@ import backgroundLettersMobile from '../assets/background-letters.svg';
 import { Image } from 'astro:assets';
 
 // Media imports
-import liveCharts from "../assets/LIVE_CHARTS.png";
+import liveChartVideo from "../assets/live-chart-video.mp4";
 import scanFilter from "../assets/scan_and_filter.mp4";
 import organizeTokens from "../assets/Organize_Part.mp4";
 import portfolioPage from "../assets/PORTFOLIO.png";
@@ -72,7 +72,7 @@ const routingIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53M
             icon={chartIcon}
             title="Live charts, always on"
             description="See your trades evolve in real time. No refreshes. No lag. Just raw market data, updating live."
-            media={{ type: 'image', src: liveCharts.src }}
+            media={{ type: 'video', src: liveChartVideo }}
             isExpanded={true}
           />
 
@@ -118,7 +118,6 @@ const routingIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53M
         <div class="relative aspect-[4/3] bg-secondary-blue rounded-[12px] overflow-hidden media-display-container shadow-2xl">
           <div class="absolute inset-0 bg-gradient-dark rounded-[12px]"></div>
           <img id="feature-image-display"
-               src={liveCharts.src}
                alt="Feature preview"
                width="600"
                height="450"
