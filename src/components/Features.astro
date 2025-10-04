@@ -10,14 +10,12 @@ import liveChartVideo from "../assets/live-chart-video.mp4";
 import scanFilter from "../assets/scan_and_filter.mp4";
 import organizeTokens from "../assets/Organize_Part.mp4";
 import portfolioPage from "../assets/PORTFOLIO.png";
-import smartOrderRouting from "../assets/SMART_ORDER_ROUTING.png";
 
 // Placeholder pour les icônes - vous pourrez les remplacer par vos vraies icônes
 const chartIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jaGFydC1hcmVhLWljb24gbHVjaWRlLWNoYXJ0LWFyZWEiPjxwYXRoIGQ9Ik0zIDN2MTZhMiAyIDAgMCAwIDIgMmgxNiIvPjxwYXRoIGQ9Ik03IDExLjIwN2EuNS41IDAgMCAxIC4xNDYtLjM1M2wyLTJhLjUuNSAwIDAgMSAuNzA4IDBsMy4yOTIgMy4yOTJhLjUuNSAwIDAgMCAuNzA4IDBsNC4yOTItNC4yOTJhLjUuNSAwIDAgMSAuODU0LjM1M1YxNmExIDEgMCAwIDEtMSAxSDhhMSAxIDAgMCAxLTEtMXoiLz48L3N2Zz4=";
 const filterIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1saXN0LWZpbHRlci1wbHVzLWljb24gbHVjaWRlLWxpc3QtZmlsdGVyLXBsdXMiPjxwYXRoIGQ9Ik0xMCAxOGg0Ii8+PHBhdGggZD0iTTExIDZIMyIvPjxwYXRoIGQ9Ik0xNSA2aDYiLz48cGF0aCBkPSJNMTggOVYzIi8+PHBhdGggZD0iTTcgMTJoOCIvPjwvc3ZnPg==";
 const organizeIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1mb2xkZXItdHJlZS1pY29uIGx1Y2lkZS1mb2xkZXItdHJlZSI+PHBhdGggZD0iTTIwIDEwYTEgMSAwIDAgMCAxLTFWNmExIDEgMCAwIDAtMS0xaC0yLjVhMSAxIDAgMCAxLS44LS40bC0uOS0xLjJBMSAxIDAgMCAwIDE1IDNoLTJhMSAxIDAgMCAwLTEgMXY1YTEgMSAwIDAgMCAxIDFaIi8+PHBhdGggZD0iTTIwIDIxYTEgMSAwIDAgMCAxLTF2LTNhMSAxIDAgMCAwLTEtMWgtMi45YTEgMSAwIDAgMS0uODgtLjU1bC0uNDItLjg1YTEgMSAwIDAgMC0uOTItLjZIMTNhMSAxIDAgMCAwLTEgMXY1YTEgMSAwIDAgMCAxIDFaIi8+PHBhdGggZD0iTTMgNWEyIDIgMCAwIDAgMiAyaDMiLz48cGF0aCBkPSJNMyAzdjEzYTIgMiAwIDAgMCAyIDJoMyIvPjwvc3ZnPg==";
 const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS13YWxsZXQtbWluaW1hbC1pY29uIGx1Y2lkZS13YWxsZXQtbWluaW1hbCI+PHBhdGggZD0iTTE3IDE0aC4wMSIvPjxwYXRoIGQ9Ik03IDdoMTJhMiAyIDAgMCAxIDIgMnYxMGEyIDIgMCAwIDEtMiAySDVhMiAyIDAgMCAxLTItMlY1YTIgMiAwIDAgMSAyLTJoMTQiLz48L3N2Zz4=";
-const routingIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1nYXVnZS1pY29uIGx1Y2lkZS1nYXVnZSI+PHBhdGggZD0ibTEyIDE0IDQtNCIvPjxwYXRoIGQ9Ik0zLjM0IDE5YTEwIDEwIDAgMSAxIDE3LjMyIDAiLz48L3N2Zz4=";
 ---
 
 <section id="features" class="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-primary-dark overflow-hidden">
@@ -99,14 +97,6 @@ const routingIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53M
             description="Your portfolio at a glance. See performance, allocation, and history in a clear, intuitive view."
             media={{ type: 'image', src: portfolioPage.src }}
           />
-
-          <!-- Feature 5 -->
-          <FeatureCard
-            icon={routingIcon}
-            title="Ultra-fast smart order routing"
-            description="Lightning-fast execution, optimal prices. Our tech routes every trade for the best available price, instantly."
-            media={{ type: 'image', src: smartOrderRouting.src }}
-          />
         </div>
 
         <!-- Ligne de séparation finale -->
@@ -115,12 +105,12 @@ const routingIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53M
 
       <!-- Right side - Media display for desktop -->
       <div class="hidden lg:block">
-        <div class="relative aspect-[4/3] bg-secondary-blue rounded-[12px] overflow-hidden media-display-container shadow-2xl">
+        <div class="relative aspect-[3/2] bg-secondary-blue rounded-[12px] overflow-hidden media-display-container shadow-2xl">
           <div class="absolute inset-0 bg-gradient-dark rounded-[12px]"></div>
           <img id="feature-image-display"
                alt="Feature preview"
                width="600"
-               height="450"
+               height="400"
                class="absolute inset-0 w-full h-full object-cover media-display-content transition-all duration-400 ease-out"
                style="transform: translateZ(0);">
           <video id="feature-video-display"
