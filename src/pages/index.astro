@@ -30,23 +30,25 @@ import "../styles/global.css";
 			<div class="hidden md:block absolute top-1/2 left-3/4 transform -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary-blue opacity-40 blur-[260px] rounded-full"></div>
 			<div class="hidden md:block absolute top-0 left-1/4 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary-blue opacity-40 blur-[250px] rounded-full"></div>
 
-			<!-- Pattern letters background - Mobile version -->
-			<div class="absolute inset-0 opacity-60 lg:hidden">
-				<img
-					src={backgroundLettersMobile.src}
-					alt=""
-					class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] object-cover"
-				/>
-			</div>
+		<!-- Pattern letters background - Mobile version -->
+		<div class="absolute inset-0 opacity-60 lg:hidden">
+			<img
+				src={backgroundLettersMobile.src}
+				alt=""
+				fetchpriority="high"
+				class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] object-cover"
+			/>
+		</div>
 
-			<!-- Pattern letters background - Desktop version -->
-			<div class="absolute inset-0 opacity-100 hidden lg:block">
-				<img
-					src={backgroundLettersDesktop.src}
-					alt=""
-					class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] object-cover"
-				/>
-			</div>
+		<!-- Pattern letters background - Desktop version -->
+		<div class="absolute inset-0 opacity-100 hidden lg:block">
+			<img
+				src={backgroundLettersDesktop.src}
+				alt=""
+				fetchpriority="high"
+				class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] object-cover"
+			/>
+		</div>
 			
 			<!-- Gradient de transition vers le fond plus foncé --> 
 			<div class="absolute inset-0 top-[60%] bg-gradient-to-b from-transparent via-[#050F2F]/50 to-[#050F2F]"></div>
