@@ -27,6 +27,7 @@ const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
         src={backgroundLettersMobile}
         alt="background letters pattern mobile"
         class="w-full h-full object-contain"
+        loading="lazy"
       />
     </div>
 
@@ -36,6 +37,7 @@ const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
         src={backgroundLettersDesktop}
         alt="background letters pattern desktop"
         class="w-full h-full object-contain opacity-60"
+        loading="lazy"
       />
     </div>
   </div>
@@ -114,7 +116,7 @@ const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
                class="absolute inset-0 w-full h-full object-cover media-display-content transition-all duration-400 ease-out"
                style="transform: translateZ(0);">
           <video id="feature-video-display"
-                 autoplay loop muted playsinline
+                 autoplay loop muted playsinline preload="metadata"
                  class="absolute inset-0 w-full h-full object-cover media-display-content transition-all duration-400 ease-out opacity-0"
                  style="transform: translateZ(0);"></video>
         </div>

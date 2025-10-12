@@ -9,5 +9,13 @@ export default defineConfig({
     compressHTML: true,
     vite: {
         plugins: [tailwindcss()],
+        build: {
+          cssCodeSplit: false,
+          rollupOptions: {
+            output: {
+              manualChunks: undefined,
+            }
+          }
+        }
       },
 });

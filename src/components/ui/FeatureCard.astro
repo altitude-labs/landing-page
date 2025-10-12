@@ -43,10 +43,10 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
                     {media && (
                         <div class="lg:hidden relative rounded-[5px] overflow-hidden w-full aspect-[290/181]">
                             {media.type === 'image' && (
-                                <img src={media.src} alt={media.alt ?? ''} class="w-full h-full object-cover" width="290" height="181" />
+                                <img src={media.src} alt={media.alt ?? ''} class="w-full h-full object-cover" width="290" height="181" loading="lazy" />
                             )}
                             {media.type === 'video' && (
-                                <video src={media.src} autoplay loop muted playsinline class="w-full h-full object-contain"></video>
+                                <video src={media.src} autoplay loop muted playsinline preload="metadata" class="w-full h-full object-contain"></video>
                             )}
                         </div>
                     )}
