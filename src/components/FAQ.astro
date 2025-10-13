@@ -9,7 +9,7 @@ import backgroundLettersMobile from '../assets/background-letters.svg';
 <section id="faq" class="relative py-0 pb-20 md:pb-32 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#020921] via-[#030b2a] to-[#050F2F] overflow-hidden">
   <!-- Background effects -->
   <div class="absolute inset-0">
-    <!-- Pattern background mobile avec dégradé d'opacité (hidden on lg+) -->
+    <!-- Mobile pattern background -->
     <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[667px] lg:hidden">
       <Image
         src={backgroundLettersMobile}
@@ -19,7 +19,7 @@ import backgroundLettersMobile from '../assets/background-letters.svg';
       />
     </div>
 
-    <!-- Pattern background desktop avec dégradé d'opacité (hidden on <lg) -->
+    <!-- Desktop pattern background -->
     <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1585px] h-[1053px] hidden lg:block">
       <Image
         src={backgroundLettersDesktop}
@@ -31,12 +31,9 @@ import backgroundLettersMobile from '../assets/background-letters.svg';
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto">
-    <!-- Header Section -->
     <div class="flex flex-col items-center text-center mb-12 md:mb-20">
-      <!-- Section Badge -->
       <SectionBadge text="Q&A" />
       
-      <!-- Titre principal -->
       <h2 class="text-white font-bold text-2xl md:text-4xl lg:text-5xl leading-tight max-w-2xl mx-auto">
         Frequently Asked Questions
       </h2>

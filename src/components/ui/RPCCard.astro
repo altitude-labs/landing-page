@@ -10,9 +10,8 @@ export interface Props {
 const { title, description, isDesktop = false } = Astro.props;
 ---
 
-<!-- RPC Card avec effet hover automatique -->
+<!-- RPC Card -->
 <div class={`group relative bg-[#020921] rounded-[10px] p-[30px] md:p-[40px] w-full overflow-hidden transition-all duration-300 ${isDesktop ? 'h-[248px]' : ''}`}>
-  <!-- Pattern background (caché par défaut, visible au hover) -->
   <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[965px] h-[641px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
     <img 
       src={backgroundLetters.src} 
@@ -21,10 +20,8 @@ const { title, description, isDesktop = false } = Astro.props;
     />
   </div>
   
-  <!-- Gradient de lueur du bas vers le haut (caché par défaut, visible au hover) -->
   <div class="absolute inset-0 bg-gradient-to-t from-[#7795FA66]/40 via-[#7795FA33]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-[10px]"></div>
   
-  <!-- Contenu -->
   <div class="relative z-10 flex flex-col gap-5">
     <h3 class={`text-white font-medium tracking-[-0.4px] leading-tight ${isDesktop ? 'text-xl' : 'text-xl'}`}>
       {title}

@@ -13,9 +13,7 @@ const borderClasses = hasBorderBottom
   : "border-l border-r border-t border-white/3";
 ---
 
-<!-- Card avec calques de fond + zoom au hover -->
 <div class={`group ${borderClasses} relative overflow-hidden p-5 md:p-6 flex flex-col gap-4 min-h-[180px] transition-all duration-300`}>
-  <!-- Calque image de fond (remplace ::before) -->
   <div
     class="absolute inset-0 bg-center bg-no-repeat bg-cover opacity-0 scale-100
            transition-[opacity,transform] duration-300 ease-in-out pointer-events-none z-[1]
@@ -23,14 +21,12 @@ const borderClasses = hasBorderBottom
     style={`background-image: url('/src/assets/background-letters-desk.svg');`}
   ></div>
 
-  <!-- Calque gradient (remplace ::after) -->
   <div
     class="absolute inset-0 pointer-events-none z-0 opacity-0 transition-opacity duration-300 ease-in-out
            group-hover:opacity-100
            [background:linear-gradient(to_bottom_right,rgba(207,218,255,0.08)_0%,transparent_100%)]">
   </div>
 
-  <!-- Contenu -->
   <div class="relative z-[2] flex items-center justify-center w-8 h-8 bg-secondary-blue rounded-md transition-all duration-300 group-hover:bg-light-blue group-hover:shadow-[inset_0_0_10px_rgba(119,149,250,0.6)]">
     <img src={icon} alt="" width="16" height="16" class="w-4 h-4 transition-all duration-300" />
   </div>

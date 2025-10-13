@@ -8,15 +8,17 @@ import logo from '../assets/logo.svg';
     <div class="flex items-center justify-between h-16 md:h-20">
       <!-- Logo and Title -->
       <div class="flex-1 flex-shrink-0 flex items-center gap-3">
-        <Image 
-          src={logo} 
-          alt="Logo Altitude" 
-          width="32" 
-          height="32"
-          class="w-8 h-8 md:w-10 md:h-10"
-          loading="eager"
-        />
-        <span class="text-white font-bold text-2xl hidden md:block">altitude</span>
+        <a href="#" class="flex items-center gap-3 group">
+          <Image 
+            src={logo}
+            alt="Logo Altitude"
+            width="32" 
+            height="32"
+            class="w-8 h-8 md:w-10 md:h-10 transition-transform duration-200 group-hover:scale-110"
+            loading="eager"
+          />
+          <span class="text-white font-bold text-2xl hidden md:block transition-colors duration-200 group-hover:text-primary-blue">altitude</span>
+        </a>
       </div>
 
       <!-- Desktop Menu -->
@@ -41,17 +43,17 @@ import logo from '../assets/logo.svg';
       <div class="flex-1 flex justify-end">
         <div class="flex items-center gap-3 md:gap-4">
           <div class="hidden md:flex items-center gap-4">
-            <a href="https://t.me/altitude_trading_bot" target="_blank" rel="noopener noreferrer" class="border border-primary-blue text-white font-medium text-sm px-4 py-2 rounded-full transition-all duration-200 ease-in-out hover:bg-primary-blue/20 inline-flex items-center justify-center">
+            <a href="https://t.me/altitude_trading_bot?start" target="_blank" rel="noopener noreferrer" class="border border-primary-blue text-white font-medium text-sm px-4 py-2 rounded-full transition-all duration-200 ease-in-out hover:bg-primary-blue/20 inline-flex items-center justify-center">
               Telegram bot
             </a>
-            <button class="bg-primary-blue hover:bg-opacity-90 text-white font-medium text-sm px-6 py-2 rounded-full transition-all duration-200 ease-in-out transform hover:scale-105">
+            <a href="https://trade.reachaltitude.xyz" target="_blank" rel="noopener noreferrer" class="bg-primary-blue hover:bg-opacity-90 text-white font-medium text-sm px-6 py-2 rounded-full transition-all duration-200 ease-in-out transform hover:scale-105 inline-flex items-center justify-center">
               Launch dApp
-            </button>
+            </a>
           </div>
 
-          <button class="bg-primary-blue hover:bg-opacity-90 text-white font-medium text-sm px-4 py-2 rounded-full transition-all duration-200 ease-in-out md:hidden">
+          <a href="https://trade.reachaltitude.xyz" target="_blank" rel="noopener noreferrer" class="bg-primary-blue hover:bg-opacity-90 text-white font-medium text-sm px-4 py-2 rounded-full transition-all duration-200 ease-in-out md:hidden inline-flex items-center justify-center">
             Launch dApp
-          </button>
+          </a>
 
           <!-- Mobile Menu Button -->
           <button 
@@ -111,20 +113,20 @@ import logo from '../assets/logo.svg';
 
     function openMenu() {
       isMenuOpen = true;
-      mobileMenu.classList.remove('translate-x-full');
-      menuButton.setAttribute('aria-expanded', 'true');
+      mobileMenu?.classList.remove('translate-x-full');
+      menuButton?.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
-      menuIcon.classList.add('hidden');
-      closeIcon.classList.remove('hidden');
+      menuIcon?.classList.add('hidden');
+      closeIcon?.classList.remove('hidden');
     }
 
     function closeMenu() {
       isMenuOpen = false;
-      mobileMenu.classList.add('translate-x-full');
-      menuButton.setAttribute('aria-expanded', 'false');
+      mobileMenu?.classList.add('translate-x-full');
+      menuButton?.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
-      menuIcon.classList.remove('hidden');
-      closeIcon.classList.add('hidden');
+      menuIcon?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
     }
 
     menuButton.addEventListener('click', toggleMenu);

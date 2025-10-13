@@ -39,7 +39,6 @@ const { question, answer, isExpanded = false } = Astro.props;
 </div>
 
 <style>
-    /* Animations ultra-optimisées avec transform uniquement - pas de max-height */
     .faq-card {
         overflow: hidden;
         contain: layout style paint;
@@ -55,7 +54,6 @@ const { question, answer, isExpanded = false } = Astro.props;
         cursor: pointer;
     }
 
-    /* Container du body avec position relative pour contenir l'absolute */
     .faq-card-body {
         position: relative;
         overflow: hidden;
@@ -64,7 +62,6 @@ const { question, answer, isExpanded = false } = Astro.props;
         contain: layout style;
     }
 
-    /* Contenu caché par défaut avec position absolute */
     .faq-card-body > div {
         position: absolute;
         top: 0;
@@ -77,7 +74,6 @@ const { question, answer, isExpanded = false } = Astro.props;
         will-change: transform, opacity;
     }
 
-    /* État étendu - contenu visible */
     .faq-card[data-expanded="true"] .faq-card-body > div {
         position: static;
         opacity: 1;
@@ -88,7 +84,6 @@ const { question, answer, isExpanded = false } = Astro.props;
         border-color: rgba(79, 115, 255, 0.3);
     }
 
-    /* Transitions des icônes optimisées */
     .icon-plus, .icon-minus {
         transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         will-change: opacity;
@@ -101,14 +96,12 @@ const { question, answer, isExpanded = false } = Astro.props;
         opacity: 1;
     }
 
-    /* Optimisations spécifiques mobile - transitions plus rapides */
     @media (max-width: 1024px) {
         .faq-card-body > div {
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
                         opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Conteneur ultra-optimisé pour mobile */
         .faq-card-container {
             contain: layout style paint;
             content-visibility: auto;
@@ -118,14 +111,11 @@ const { question, answer, isExpanded = false } = Astro.props;
             contain: layout style paint;
             content-visibility: auto;
         }
-
-        /* Transitions plus rapides sur mobile */
         .icon-plus, .icon-minus {
             transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
     }
 
-    /* Gestion optimale de will-change */
     .faq-card-body > div {
         will-change: auto;
     }
@@ -134,7 +124,6 @@ const { question, answer, isExpanded = false } = Astro.props;
         will-change: transform, opacity;
     }
 
-    /* Respecter les préférences d'accessibilité */
     @media (prefers-reduced-motion: reduce) {
         .faq-card-container,
         .faq-card-body,
@@ -159,7 +148,7 @@ const { question, answer, isExpanded = false } = Astro.props;
 </style>
 
 <script>
-// Animation simple pour FAQ basée sur l'exemple fourni
+// FAQ Animation
 document.addEventListener('DOMContentLoaded', () => {
     const faqCards = document.querySelectorAll('.faq-card');
 
@@ -170,14 +159,12 @@ document.addEventListener('DOMContentLoaded', () => {
         header.addEventListener('click', () => {
             const isCurrentlyExpanded = card.getAttribute('data-expanded') === 'true';
             
-            // Fermer toutes les autres cartes (comportement accordion)
             faqCards.forEach(otherCard => {
                 if (otherCard !== card) {
                     otherCard.setAttribute('data-expanded', 'false');
                 }
             });
 
-            // Toggle la carte cliquée
             card.setAttribute('data-expanded', String(!isCurrentlyExpanded));
         });
     });

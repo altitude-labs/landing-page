@@ -29,7 +29,7 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
             </h3>
         </div>
 
-        <!-- Body - Hidden par défaut -->
+        <!-- Body - We hide it by default -->
         <div class="feature-card-body">
             <div class="px-5 pb-5">
                 <div class="flex flex-col gap-5">
@@ -39,7 +39,7 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
                         </p>
                     )}
 
-                    <!-- Media for mobile ONLY -->
+                    <!-- Media for mobile -->
                     {media && (
                         <div class="lg:hidden relative rounded-[5px] overflow-hidden w-full aspect-[290/181]">
                             {media.type === 'image' && (
@@ -57,7 +57,6 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
 </div>
 
 <style>
-    /* Animations ultra-optimisées avec transform uniquement - pas de max-height */
     .feature-card {
         overflow: hidden;
         contain: layout style paint;
@@ -73,7 +72,7 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
         cursor: pointer;
     }
 
-    /* Container du body avec position relative pour contenir l'absolute */
+    /* Body container */
     .feature-card-body {
         position: relative;
         overflow: hidden;
@@ -82,7 +81,6 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
         contain: layout style;
     }
 
-    /* Contenu caché par défaut avec position absolute */
     .feature-card-body > div {
         position: absolute;
         top: 0;
@@ -95,7 +93,6 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
         will-change: transform, opacity;
     }
 
-    /* État étendu - contenu visible */
     .feature-card[data-expanded="true"] .feature-card-body > div {
         position: static;
         opacity: 1;
@@ -106,14 +103,12 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
         border-color: rgba(79, 115, 255, 0.5);
     }
 
-    /* Optimisations spécifiques mobile - transitions plus rapides */
     @media (max-width: 1024px) {
         .feature-card-body > div {
             transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
                         opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Conteneur ultra-optimisé pour mobile */
         .feature-card-container {
             contain: layout style paint;
             content-visibility: auto;
@@ -125,7 +120,6 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
         }
     }
 
-    /* Gestion optimale de will-change */
     .feature-card-body > div {
         will-change: auto;
     }
@@ -134,7 +128,6 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
         will-change: transform, opacity;
     }
 
-    /* Respecter les préférences d'accessibilité */
     @media (prefers-reduced-motion: reduce) {
         .feature-card-container,
         .feature-card-body,
@@ -157,7 +150,6 @@ const { icon, title, description, media, isExpanded = false } = Astro.props;
 </style>
 
 <script>
-// Animation simple basée sur l'exemple fourni
 
 document.addEventListener('DOMContentLoaded', () => {
     const featureCards = document.querySelectorAll('.feature-card');
@@ -174,14 +166,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // Fermer toutes les autres cartes (comportement accordion)
             featureCards.forEach(otherCard => {
                 if (otherCard !== card) {
                     otherCard.setAttribute('data-expanded', 'false');
                 }
             });
 
-            // Toggle la carte cliquée
             card.setAttribute('data-expanded', String(!isCurrentlyExpanded));
         });
     });

@@ -11,7 +11,6 @@ import scanFilter from "../assets/scan_and_filter.mp4";
 import altitudeFav from "../assets/ALTITUDE_FAV.mp4";
 import altitudePortfolio from "../assets/ALTITUDE_PORTFOLIO.mp4";
 
-// Placeholder pour les icônes - vous pourrez les remplacer par vos vraies icônes
 const chartIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jaGFydC1hcmVhLWljb24gbHVjaWRlLWNoYXJ0LWFyZWEiPjxwYXRoIGQ9Ik0zIDN2MTZhMiAyIDAgMCAwIDIgMmgxNiIvPjxwYXRoIGQ9Ik03IDExLjIwN2EuNS41IDAgMCAxIC4xNDYtLjM1M2wyLTJhLjUuNSAwIDAgMSAuNzA4IDBsMy4yOTIgMy4yOTJhLjUuNSAwIDAgMCAuNzA4IDBsNC4yOTItNC4yOTJhLjUuNSAwIDAgMSAuODU0LjM1M1YxNmExIDEgMCAwIDEtMSAxSDhhMSAxIDAgMCAxLTEtMXoiLz48L3N2Zz4=";
 const filterIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1saXN0LWZpbHRlci1wbHVzLWljb24gbHVjaWRlLWxpc3QtZmlsdGVyLXBsdXMiPjxwYXRoIGQ9Ik0xMCAxOGg0Ii8+PHBhdGggZD0iTTExIDZIMyIvPjxwYXRoIGQ9Ik0xNSA2aDYiLz48cGF0aCBkPSJNMTggOVYzIi8+PHBhdGggZD0iTTcgMTJoOCIvPjwvc3ZnPg==";
 const organizeIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1mb2xkZXItdHJlZS1pY29uIGx1Y2lkZS1mb2xkZXItdHJlZSI+PHBhdGggZD0iTTIwIDEwYTEgMSAwIDAgMCAxLTFWNmExIDEgMCAwIDAtMS0xaC0yLjVhMSAxIDAgMCAxLS44LS40bC0uOS0xLjJBMSAxIDAgMCAwIDE1IDNoLTJhMSAxIDAgMCAwLTEgMXY1YTEgMSAwIDAgMCAxIDFaIi8+PHBhdGggZD0iTTIwIDIxYTEgMSAwIDAgMCAxLTF2LTNhMSAxIDAgMCAwLTEtMWgtMi45YTEgMSAwIDAgMS0uODgtLjU1bC0uNDItLjg1YTEgMSAwIDAgMC0uOTItLjZIMTNhMSAxIDAgMCAwLTEgMXY1YTEgMSAwIDAgMCAxIDFaIi8+PHBhdGggZD0iTTMgNWEyIDIgMCAwIDAgMiAyaDMiLz48cGF0aCBkPSJNMyAzdjEzYTIgMiAwIDAgMCAyIDJoMyIvPjwvc3ZnPg==";
@@ -21,7 +20,7 @@ const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 <section id="features" class="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-primary-dark overflow-hidden">
   <!-- Background effects -->
   <div class="absolute inset-0">
-    <!-- Pattern background - Mobile version (hidden on lg+) -->
+    <!-- Mobile pattern background -->
     <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] lg:hidden">
       <Image
         src={backgroundLettersMobile}
@@ -31,7 +30,7 @@ const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
       />
     </div>
 
-    <!-- Pattern background - Desktop version (hidden on <lg) -->
+    <!-- Desktop pattern background -->
     <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[2151px] h-[1429px] hidden lg:block">
       <Image
         src={backgroundLettersDesktop}
@@ -43,18 +42,13 @@ const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
   </div>
 
   <div class="relative z-10 max-w-7xl mx-auto">
-    <!-- Header Section -->
     <div class="flex flex-col items-center text-center mb-12 md:mb-20">
-      <!-- Section Badge -->
       <SectionBadge text="Features" />
 
-      <!-- Titre principal -->
       <h2 class="text-white font-bold text-2xl md:text-4xl lg:text-5xl leading-tight mb-4 max-w-2xl mx-auto">
         Everything you need.<br/>
         Nothing you don't.
       </h2>
-
-      <!-- Sous-titre -->
       <p class="text-light-blue font-medium text-base md:text-lg leading-relaxed max-w-md mx-auto tracking-tight">
         Fast execution, clear data, and powerful tools — without the noise.
       </p>
@@ -63,7 +57,6 @@ const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
     <!-- Features Grid -->
     <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
       <div class="max-w-md mx-auto md:max-w-2xl lg:max-w-none">
-        <!-- Ligne de séparation -->
         <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-5"></div>
 
         <div class="flex flex-col gap-5 feature-card-wrapper" id="features-list">
@@ -101,7 +94,6 @@ const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
           />
         </div>
 
-        <!-- Ligne de séparation finale -->
         <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mt-5"></div>
       </div>
 
