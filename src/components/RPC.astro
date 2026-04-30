@@ -10,18 +10,14 @@ import SectionBadge from './ui/SectionBadge.astro';
         <div class="mb-10">
           <SectionBadge text="RPC Services" />
         </div>
-        
-        <!-- Titre et sous-titre -->
         <div class="mb-10 max-w-2xl">
-          <h2 class="text-white font-bold text-2xl md:text-4xl lg:text-3xl leading-tight mb-4">
+          <h2 class="text-white font-bold text-xl md:text-2xl leading-tight mb-4">
             The infrastructure running Altitude? You can use it too.
           </h2>
           <p class="text-light-blue font-medium text-base md:text-lg leading-relaxed tracking-tight">
-            It's the same infrastructure we offer to others.
+            20+ institutional clients already do.
           </p>
         </div>
-        
-        <!-- Boutons CTA -->
         <div class="flex flex-wrap items-center gap-2">
           <a href="https://rpc.reachaltitude.xyz/" target="_blank" rel="noopener noreferrer" class="bg-primary-blue hover:bg-opacity-90 text-white font-medium text-sm px-4 py-2 rounded-full transition-all duration-200 tracking-tight inline-flex items-center justify-center">
             Learn more
@@ -31,51 +27,34 @@ import SectionBadge from './ui/SectionBadge.astro';
           </a>
         </div>
       </div>
-
-      <!-- RPC Cards Container - Mobile -->
       <div class="max-w-md mx-auto md:max-w-2xl">
         <div class="bg-[#050f2f] rounded-[20px] p-2.5">
           <div class="flex flex-col">
-            <RPCCard 
-              title="Private RPC Endpoints"
-              description="Get dedicated, high-performance RPC endpoints designed for consistent throughput and zero congestion."
-            />
+            <RPCCard title="Private RPC Endpoints" description="Dedicated throughput, zero congestion. Built for production traffic on Hyperliquid." />
             <div class="h-px bg-gradient-to-r from-transparent via-red-500/60 to-transparent my-2.5"></div>
-            <RPCCard 
-              title="Low Latency by Design"
-              description="Altitude's RPC stack delivers sub-second response times — perfect for MEV, copytrading, or active users."
-            />
+            <RPCCard title="Sub-second Latency" description="Milliseconds decide trades. Our stack is optimized for MEV, copy trading, and high-frequency use." />
             <div class="h-px bg-gradient-to-r from-transparent via-green-500/60 to-transparent my-2.5"></div>
-            <RPCCard 
-              title="Custom APIs & Tooling"
-              description="Request bespoke APIs that fit your app's needs — from indexing to advanced execution logic."
-            />
+            <RPCCard title="Custom APIs" description="From EVM indexing to execution logic. We build what your app actually needs." />
             <div class="h-px bg-gradient-to-r from-transparent via-red-500/60 to-transparent my-2.5"></div>
-            <RPCCard 
-              title="Fully Managed Infra"
-              description="We deploy, monitor, and maintain your nodes so you can focus on building — not debugging."
-            />
+            <RPCCard title="Fully Managed" description="We deploy, monitor, and maintain. You ship." />
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Desktop Layout -->
     <div class="hidden lg:block">
-      <div class="mb-10">
+      <div class="mb-10 flex justify-center">
         <SectionBadge text="RPC Services" />
       </div>
-      
       <div class="flex items-center justify-between mb-[100px]">
         <div class="flex-1 max-w-[832px]">
-          <h2 class="text-white font-bold text-[80px] leading-[80px]">
-            The speed and reliability behind our dApp?
+          <h2 class="text-white font-bold text-[48px] leading-[52px]">
+            The infrastructure running Altitude?<br /> You can use it too.
           </h2>
         </div>
-        
         <div class="flex flex-col items-end gap-[30px]">
           <p class="text-light-blue font-medium text-[25px] leading-[1.4] tracking-[-0.5px] text-right w-[323px]">
-            It's the same infrastructure we offer to others.
+            20+ institutional clients already do.
           </p>
           <div class="flex items-center gap-2.5">
             <a href="https://rpc.reachaltitude.xyz/" target="_blank" rel="noopener noreferrer" class="bg-primary-blue hover:bg-opacity-90 text-white font-medium text-base px-[25px] py-3 rounded-[28px] transition-all duration-200 tracking-[-0.32px] inline-flex items-center justify-center">
@@ -87,40 +66,22 @@ import SectionBadge from './ui/SectionBadge.astro';
           </div>
         </div>
       </div>
-
-      <!-- RPC Cards Container - Desktop Horizontal -->
       <div class="bg-[#050f2f] rounded-[20px] p-2.5">
         <div class="flex gap-2.5">
           <div class="flex-1">
-            <RPCCard 
-              title="Private RPC Endpoints"
-              description="Dedicated speed, zero congestion. High-performance RPC endpoints built for stable throughput and uninterrupted access."
-              isDesktop={true}
-            />
+            <RPCCard title="Private RPC Endpoints" description="Dedicated throughput, zero congestion. Built for production traffic on Hyperliquid." isDesktop={true} />
           </div>
           <div class="w-px bg-gradient-to-b from-transparent via-red-500/60 to-transparent"></div>
           <div class="flex-1">
-            <RPCCard 
-              title="Low Latency by Design"
-              description="Milliseconds matter. Our RPC stack delivers sub-second responses—ideal for MEV, copytrading, and power users."
-              isDesktop={true}
-            />
+            <RPCCard title="Sub-second Latency" description="Milliseconds decide trades. Our stack is optimized for MEV, copy trading, and high-frequency use." isDesktop={true} />
           </div>
           <div class="w-px bg-gradient-to-b from-transparent via-green-500/60 to-transparent"></div>
           <div class="flex-1">
-            <RPCCard 
-              title="Custom APIs & Tooling"
-              description="Tailored to your app. From indexing to advanced execution logic, we build APIs that fit your exact needs."
-              isDesktop={true}
-            />
+            <RPCCard title="Custom APIs" description="From EVM indexing to execution logic. We build what your app actually needs." isDesktop={true} />
           </div>
           <div class="w-px bg-gradient-to-b from-transparent via-red-500/60 to-transparent"></div>
           <div class="flex-1">
-            <RPCCard 
-              title="Fully Managed Infra"
-              description="We run it. You build it. We deploy, monitor, and maintain your nodes so you can focus on creating, not troubleshooting."
-              isDesktop={true}
-            />
+            <RPCCard title="Fully Managed" description="We deploy, monitor, and maintain. You ship." isDesktop={true} />
           </div>
         </div>
       </div>
