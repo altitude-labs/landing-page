@@ -4,60 +4,38 @@ import FeatureCard from './ui/FeatureCard.astro';
 import backgroundLettersDesktop from '../assets/background-letters-desk.svg';
 import backgroundLettersMobile from '../assets/background-letters.svg';
 import { Image } from 'astro:assets';
-
-// Media imports
 import liveChartVideo from "../assets/live-chart-video.mp4";
 import scanFilter from "../assets/scan_and_filter.mp4";
 import altitudeFav from "../assets/ALTITUDE_FAV.mp4";
 import altitudePortfolio from "../assets/ALTITUDE_PORTFOLIO.mp4";
 
-const chartIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1jaGFydC1hcmVhLWljb24gbHVjaWRlLWNoYXJ0LWFyZWEiPjxwYXRoIGQ9Ik0zIDN2MTZhMiAyIDAgMCAwIDIgMmgxNiIvPjxwYXRoIGQ9Ik03IDExLjIwN2EuNS41IDAgMCAxIC4xNDYtLjM1M2wyLTJhLjUuNSAwIDAgMSAuNzA4IDBsMy4yOTIgMy4yOTJhLjUuNSAwIDAgMCAuNzA4IDBsNC4yOTItNC4yOTJhLjUuNSAwIDAgMSAuODU0LjM1M1YxNmExIDEgMCAwIDEtMSAxSDhhMSAxIDAgMCAxLTEtMXoiLz48L3N2Zz4=";
-const filterIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1saXN0LWZpbHRlci1wbHVzLWljb24gbHVjaWRlLWxpc3QtZmlsdGVyLXBsdXMiPjxwYXRoIGQ9Ik0xMCAxOGg0Ii8+PHBhdGggZD0iTTExIDZIMyIvPjxwYXRoIGQ9Ik0xNSA2aDYiLz48cGF0aCBkPSJNMTggOVYzIi8+PHBhdGggZD0iTTcgMTJoOCIvPjwvc3ZnPg==";
-const organizeIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS1mb2xkZXItdHJlZS1pY29uIGx1Y2lkZS1mb2xkZXItdHJlZSI+PHBhdGggZD0iTTIwIDEwYTEgMSAwIDAgMCAxLTFWNmExIDEgMCAwIDAtMS0xaC0yLjVhMSAxIDAgMCAxLS44LS40bC0uOS0xLjJBMSAxIDAgMCAwIDE1IDNoLTJhMSAxIDAgMCAwLTEgMXY1YTEgMSAwIDAgMCAxIDFaIi8+PHBhdGggZD0iTTIwIDIxYTEgMSAwIDAgMCAxLTF2LTNhMSAxIDAgMCAwLTEtMWgtMi45YTEgMSAwIDAgMS0uODgtLjU1bC0uNDItLjg1YTEgMSAwIDAgMC0uOTItLjZIMTNhMSAxIDAgMCAwLTEgMXY1YTEgMSAwIDAgMCAxIDFaIi8+PHBhdGggZD0iTTMgNWEyIDIgMCAwIDAgMiAyaDMiLz48cGF0aCBkPSJNMyAzdjEzYTIgMiAwIDAgMCAyIDJoMyIvPjwvc3ZnPg==";
-const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiNmM2YyZjIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0ibHVjaWRlIGx1Y2lkZS13YWxsZXQtbWluaW1hbC1pY29uIGx1Y2lkZS13YWxsZXQtbWluaW1hbCI+PHBhdGggZD0iTTE3IDE0aC4wMSIvPjxwYXRoIGQ9Ik03IDdoMTJhMiAyIDAgMCAxIDIgMnYxMGEyIDIgMCAwIDEtMiAySDVhMiAyIDAgMCAxLTItMlY1YTIgMiAwIDAgMSAyLTJoMTQiLz48L3N2Zz4=";
+const chartIcon = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f3f2f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16v5"/><path d="M16 14v7"/><path d="M20 10v11"/><path d="m22 3-8.646 8.646a.5.5 0 0 1-.708 0L9.354 8.354a.5.5 0 0 0-.707 0L2 15"/><path d="M4 18v3"/><path d="M8 14v7"/></svg>')}`;
+const filterIcon = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f3f2f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"/><path d="M4 6h.01"/><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"/><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"/><path d="M12 18h.01"/><path d="M17.99 11.66A6 6 0 0 1 15.77 16.67"/><circle cx="12" cy="12" r="2"/><path d="m13.41 10.59 5.66-5.66"/></svg>')}`;
+const organizeIcon = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f3f2f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.828 14.828 21 21"/><path d="M21 16v5h-5"/><path d="m21 3-9 9-4-4-6 6"/><path d="M21 8V3h-5"/></svg>')}`;
+const portfolioIcon = `data:image/svg+xml,${encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f3f2f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z"/><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/></svg>')}`;
 ---
 
 <section id="features" class="relative py-20 md:py-32 px-4 sm:px-6 lg:px-8 bg-primary-dark overflow-hidden">
-  <!-- Background effects -->
   <div class="absolute inset-0">
-    <!-- Mobile pattern background -->
     <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] lg:hidden">
-      <Image
-        src={backgroundLettersMobile}
-        alt="background letters pattern mobile"
-        class="w-full h-full object-contain"
-        loading="lazy"
-      />
+      <Image src={backgroundLettersMobile} alt="background letters pattern mobile" class="w-full h-full object-contain" loading="lazy" />
     </div>
-
-    <!-- Desktop pattern background -->
     <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[2151px] h-[1429px] hidden lg:block">
-      <Image
-        src={backgroundLettersDesktop}
-        alt="background letters pattern desktop"
-        class="w-full h-full object-contain opacity-60"
-        loading="lazy"
-      />
+      <Image src={backgroundLettersDesktop} alt="background letters pattern desktop" class="w-full h-full object-contain opacity-60" loading="lazy" />
     </div>
   </div>
-
   <div class="relative z-10 max-w-7xl mx-auto">
     <div class="flex flex-col items-center text-center mb-12 md:mb-20">
       <SectionBadge text="Features" />
-
       <h2 class="text-white font-bold text-2xl md:text-4xl lg:text-5xl leading-tight mb-4 max-w-2xl mx-auto">
         Everything you need.<br/>
         Nothing slowing you down.
       </h2>
     </div>
-
-    <!-- Features Grid -->
     <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
       <div class="max-w-md mx-auto md:max-w-2xl lg:max-w-none">
         <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-5"></div>
-
         <div class="flex flex-col gap-5 feature-card-wrapper" id="features-list">
-          <!-- Feature 1 - Expanded by default on desktop -->
           <FeatureCard
             icon={chartIcon}
             title="Live charts, always on"
@@ -65,24 +43,18 @@ const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
             media={{ type: 'video', src: liveChartVideo }}
             isExpanded={true}
           />
-
-          <!-- Feature 2 -->
           <FeatureCard
             icon={filterIcon}
             title="Scan trending tokens"
             description="Spot the move before the crowd. Filter by volume, trend, or market cap across all HyperEVM and Solana tokens."
             media={{ type: 'video', src: scanFilter }}
           />
-
-          <!-- Feature 3 -->
           <FeatureCard
             icon={organizeIcon}
             title="Prediction markets as a signal"
             description="Trade perps using outcome market data as your edge. HIP-4 and Polymarket/Kalshi intel in one view."
             media={{ type: 'video', src: altitudeFav }}
           />
-
-          <!-- Feature 4 -->
           <FeatureCard
             icon={portfolioIcon}
             title="Portfolio dashboard"
@@ -90,22 +62,15 @@ const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
             media={{ type: 'video', src: altitudePortfolio }}
           />
         </div>
-
         <div class="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mt-5"></div>
       </div>
-
-      <!-- Right side - Media display for desktop -->
       <div class="hidden lg:block">
         <div class="relative aspect-[3/2] bg-secondary-blue rounded-[12px] overflow-hidden media-display-container shadow-2xl">
           <div class="absolute inset-0 bg-gradient-dark rounded-[12px]"></div>
-          <img id="feature-image-display"
-               alt="Feature preview"
-               width="600"
-               height="400"
+          <img id="feature-image-display" alt="Feature preview" width="600" height="400"
                class="absolute inset-0 w-full h-full object-cover media-display-content transition-all duration-400 ease-out"
                style="transform: translateZ(0);">
-          <video id="feature-video-display"
-                 autoplay loop muted playsinline preload="metadata"
+          <video id="feature-video-display" autoplay loop muted playsinline preload="metadata"
                  class="absolute inset-0 w-full h-full object-cover media-display-content transition-all duration-400 ease-out opacity-0"
                  style="transform: translateZ(0);"></video>
         </div>
@@ -116,32 +81,20 @@ const portfolioIcon = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy5
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  // Only run desktop media display logic on desktop
   if (window.innerWidth < 1024) return;
-
   const featuresList = document.getElementById('features-list');
   if (!featuresList) return;
-
   const featureCards = featuresList.querySelectorAll('.feature-card');
   const imageDisplay = document.getElementById('feature-image-display') as HTMLImageElement | null;
   const videoDisplay = document.getElementById('feature-video-display') as HTMLVideoElement | null;
-
   if (!imageDisplay || !videoDisplay) return;
-
-  // Ultra-smooth media switching with RAF
   const updateMediaDisplay = (activeCard: Element) => {
     const mediaSrc = (activeCard as HTMLElement).dataset.mediaSrc;
     const mediaType = (activeCard as HTMLElement).dataset.mediaType;
-
     if (!mediaSrc || !mediaType) return;
-
     const isImage = mediaType === 'image';
-
-    // Smooth fade out both elements
     imageDisplay.style.opacity = '0';
     videoDisplay.style.opacity = '0';
-
-    // Use RAF for smooth transitions
     requestAnimationFrame(() => {
       setTimeout(() => {
         if (isImage) {
@@ -159,43 +112,31 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           requestAnimationFrame(() => {
             videoDisplay.style.opacity = '1';
-            videoDisplay.play().catch(() => {
-              // Handle play promise rejection
-            });
+            videoDisplay.play().catch(() => {});
           });
         }
-      }, 150); // Match transition duration
+      }, 150);
     });
   };
-
-  // Optimized mutation observer for desktop media sync
   const observer = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.type === 'attributes' && mutation.attributeName === 'data-expanded') {
         const card = mutation.target as Element;
         const isExpanded = card.getAttribute('data-expanded') === 'true';
-
         if (isExpanded) {
           updateMediaDisplay(card);
         }
       }
     });
   });
-
-  // Setup observers and initial state
   featureCards.forEach(card => {
     observer.observe(card, { attributes: true, attributeFilter: ['data-expanded'] });
-
-    // Initialize media for already expanded card
     if (card.getAttribute('data-expanded') === 'true') {
       updateMediaDisplay(card);
     }
   });
-
-  // Cleanup on page unload
   window.addEventListener('beforeunload', () => {
     observer.disconnect();
   });
 });
 </script>
-
